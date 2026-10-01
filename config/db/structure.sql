@@ -18,8 +18,8 @@ CREATE TABLE `players`(
   `height` string NOT NULL,
   `dominant_foot` integer NOT NULL,
   `primary_position` integer NOT NULL,
-  `secondary_position` integer NOT NULL,
-  `club_id` integer REFERENCES `clubs` ON DELETE RESTRICT
+  `club_id` integer REFERENCES `clubs` ON DELETE RESTRICT,
+  `secondary_positions` string
 );
 CREATE TABLE `player_traits`(
   `id` integer NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -33,4 +33,5 @@ INSERT INTO schema_migrations (filename) VALUES
 ('20260930192839_create_clubs.rb'),
 ('20260930193007_create_players.rb'),
 ('20260930194845_create_player_traits.rb'),
-('20260930202012_rename_clubs.rb');
+('20260930202012_rename_clubs.rb'),
+('20261001182736_alter_players_secondary_position.rb');
