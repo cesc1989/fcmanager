@@ -21,7 +21,15 @@ CREATE TABLE `players`(
   `secondary_position` integer NOT NULL,
   `club_id` integer REFERENCES `clubs` ON DELETE RESTRICT
 );
+CREATE TABLE `player_traits`(
+  `id` integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  `player_id` integer REFERENCES `players`,
+  `trait_id` integer REFERENCES `traits`,
+  `value` integer DEFAULT(0) NOT NULL,
+  UNIQUE(`player_id`, `trait_id`)
+);
 INSERT INTO schema_migrations (filename) VALUES
 ('20260930191342_create_traits.rb'),
 ('20260930192839_create_clubs.rb'),
-('20260930193007_create_players.rb');
+('20260930193007_create_players.rb'),
+('20260930194845_create_player_traits.rb');
