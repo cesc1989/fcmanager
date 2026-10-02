@@ -4,6 +4,10 @@ module Fcmanager
   module Relations
     class Players < Fcmanager::DB::Relation
       schema :players, infer: true do
+        associations do
+          belongs_to :club
+        end
+
         attribute(
           :role,
           Types::Integer,
