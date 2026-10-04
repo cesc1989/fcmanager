@@ -2,6 +2,8 @@
 
 module Fcmanager
   class Routes < Hanami::Routes
-    # Add your routes here. See https://hanakai.org/learn/hanami/routing/ for details.
+    root to: "squad.index"
+
+    get "/squad", to: "squad.index"
   end
 end

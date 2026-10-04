@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fcmanager</title>
+    <title>Career Mode Manager · FC26</title>
     <%= favicon_tag %>
     <%= stylesheet_tag "app" %>
   </head>
   <body>
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo">⚽</span>
+        <div>
+          <h1>Career Mode Manager</h1>
+          <p class="sub">FC26 · plantilla y formación</p>
+        </div>
+      </div>
+
+      <nav class="tabs">
+        <button class="tab is-active" type="button">Plantilla</button>
+      </nav>
+    </header>
+
     <%= yield %>
+
     <%= javascript_tag "app" %>
   </body>
 </html>

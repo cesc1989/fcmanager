@@ -1,0 +1,35 @@
+/* ===== Header ===== */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 20px;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand h1 { font-size: 16px; letter-spacing: .2px; }
+.brand .sub { margin: 0; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
+.logo { font-size: 22px; }
+
+.tabs { display: flex; gap: 4px; background: var(--panel); padding: 4px; border-radius: 999px; }
+.tab {
+  border: 0; background: transparent; color: var(--muted);
+  padding: 7px 18px; border-radius: 999px; cursor: pointer;
+  font-size: 13px; font-weight: 600;
+}
+.tab:hover { color: var(--text); }
+.tab.is-active { background: var(--accent); color: var(--accent-ink); }
+
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.save-state { font-size: 11px; color: var(--muted); padding-right: 6px; }
+.save-state.is-busy { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .header-actions { width: 100%; justify-content: flex-end; }
+}

@@ -1,0 +1,251 @@
+<main>
+  <section class="view">
+    <div class="toolbar">
+      <input id="search" class="input" type="search" placeholder="Buscar por nombre o comentario…">
+      <select id="filter-group" class="input">
+        <option value="ALL">Todas las líneas</option>
+        <option value="POR">Porteros</option>
+        <option value="DEF">Defensas</option>
+        <option value="MED">Mediocampistas</option>
+        <option value="DEL">Delanteros</option>
+      </select>
+      <select id="sort-by" class="input">
+        <option value="position">Ordenar: posición</option>
+        <option value="overall">Ordenar: promedio</option>
+        <option value="age">Ordenar: edad</option>
+        <option value="name">Ordenar: nombre</option>
+      </select>
+      <span class="spacer"></span>
+      <span id="squad-count" class="muted">8 de 8 jugadores</span>
+      <button id="btn-new" class="btn primary" type="button">+ Nuevo jugador</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="squad-table">
+        <thead>
+          <tr>
+            <th class="col-name">Nombre</th>
+            <th class="col-num">Edad</th>
+            <th>Posición</th>
+            <th>Rol</th>
+            <th class="col-num">Prom.</th>
+            <th class="col-attrs">Características</th>
+            <th class="col-comment">Comentario</th>
+            <th class="col-actions"></th>
+          </tr>
+        </thead>
+        <tbody id="squad-body">
+          <tr>
+            <td class="col-name">
+              <button class="link-name" type="button">Iker Salas</button>
+              <span class="badge-xi">XI</span>
+            </td>
+            <td class="col-num">27</td>
+            <td><span class="pos-tag pos-POR" title="Portero">POR</span></td>
+            <td>Esencial</td>
+            <td class="col-num"><span class="ovr is-elite">82</span></td>
+            <td class="col-attrs">
+              <div class="chips">
+                <span class="chip attr <%= rating_class(85) %>" title="Reflejos"><span class="attr-short">REF</span><span class="attr-value">85</span></span>
+                <span class="chip attr <%= rating_class(83) %>" title="Colocación"><span class="attr-short">COL</span><span class="attr-value">83</span></span>
+                <span class="chip attr <%= rating_class(79) %>" title="Manejo"><span class="attr-short">MAN</span><span class="attr-value">79</span></span>
+                <span class="chip attr <%= rating_class(74) %>" title="Saque"><span class="attr-short">SAQ</span><span class="attr-value">74</span></span>
+                <span class="chip attr <%= rating_class(80) %>" title="Juego aéreo"><span class="attr-short">AER</span><span class="attr-value">80</span></span>
+                <span class="chip attr <%= rating_class(84) %>" title="Reacción"><span class="attr-short">REA</span><span class="attr-value">84</span></span>
+              </div>
+            </td>
+            <td class="col-comment"><span class="comment">Seguro bajo palos, pero le cuesta con los pies. Renovar hasta 2029.</span></td>
+            <td class="col-actions">
+              <button class="icon-btn" type="button" title="Editar">✎</button>
+              <button class="icon-btn danger" type="button" title="Eliminar">🗑</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="col-name"><button class="link-name" type="button">Bruno Vidal</button></td>
+            <td class="col-num">24</td>
+            <td><span class="pos-tag pos-DEF" title="Lateral izquierdo">LI</span></td>
+            <td>Esencial</td>
+            <td class="col-num"><span class="ovr is-good">79</span></td>
+            <td class="col-attrs">
+              <div class="chips">
+                <span class="chip attr <%= rating_class(88) %>" title="Velocidad"><span class="attr-short">VEL</span><span class="attr-value">88</span></span>
+                <span class="chip attr <%= rating_class(89) %>" title="Aceleración"><span class="attr-short">ACE</span><span class="attr-value">89</span></span>
+                <span class="chip attr <%= rating_class(74) %>" title="Marcaje"><span class="attr-short">MAR</span><span class="attr-value">74</span></span>
+                <span class="chip attr <%= rating_class(76) %>" title="Entradas"><span class="attr-short">ENT</span><span class="attr-value">76</span></span>
+                <span class="chip attr <%= rating_class(62) %>" title="Juego aéreo"><span class="attr-short">AER</span><span class="attr-value">62</span></span>
+                <span class="chip attr <%= rating_class(70) %>" title="Fuerza"><span class="attr-short">FUE</span><span class="attr-value">70</span></span>
+                <span class="chip attr <%= rating_class(77) %>" title="Pase"><span class="attr-short">PAS</span><span class="attr-value">77</span></span>
+              </div>
+            </td>
+            <td class="col-comment"><span class="comment">Motor de la banda. Ideal para carrilero si cambio a 3 centrales.</span></td>
+            <td class="col-actions">
+              <button class="icon-btn" type="button" title="Editar">✎</button>
+              <button class="icon-btn danger" type="button" title="Eliminar">🗑</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="col-name">
+              <button class="link-name" type="button">Marc Ferrer</button>
+              <span class="badge-xi">XI</span>
+            </td>
+            <td class="col-num">29</td>
+            <td><span class="pos-tag pos-DEF" title="Defensa central">DFC</span></td>
+            <td>Esencial</td>
+            <td class="col-num"><span class="ovr is-elite">81</span></td>
+            <td class="col-attrs">
+              <div class="chips">
+                <span class="chip attr <%= rating_class(68) %>" title="Velocidad"><span class="attr-short">VEL</span><span class="attr-value">68</span></span>
+                <span class="chip attr <%= rating_class(66) %>" title="Aceleración"><span class="attr-short">ACE</span><span class="attr-value">66</span></span>
+                <span class="chip attr <%= rating_class(85) %>" title="Marcaje"><span class="attr-short">MAR</span><span class="attr-value">85</span></span>
+                <span class="chip attr <%= rating_class(83) %>" title="Entradas"><span class="attr-short">ENT</span><span class="attr-value">83</span></span>
+                <span class="chip attr <%= rating_class(86) %>" title="Juego aéreo"><span class="attr-short">AER</span><span class="attr-value">86</span></span>
+                <span class="chip attr <%= rating_class(84) %>" title="Fuerza"><span class="attr-short">FUE</span><span class="attr-value">84</span></span>
+                <span class="chip attr <%= rating_class(72) %>" title="Pase"><span class="attr-short">PAS</span><span class="attr-value">72</span></span>
+              </div>
+            </td>
+            <td class="col-comment"><span class="comment">Capitán. Líder del vestuario, cuidado con las tarjetas.</span></td>
+            <td class="col-actions">
+              <button class="icon-btn" type="button" title="Editar">✎</button>
+              <button class="icon-btn danger" type="button" title="Eliminar">🗑</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="col-name">
+              <button class="link-name" type="button">Samir Doukouré</button>
+              <span class="badge-xi">XI</span>
+            </td>
+            <td class="col-num">26</td>
+            <td><span class="pos-tag pos-MED" title="Mediocentro defensivo">MCD</span></td>
+            <td>Esencial</td>
+            <td class="col-num"><span class="ovr is-elite">80</span></td>
+            <td class="col-attrs">
+              <div class="chips">
+                <span class="chip attr <%= rating_class(72) %>" title="Velocidad"><span class="attr-short">VEL</span><span class="attr-value">72</span></span>
+                <span class="chip attr <%= rating_class(71) %>" title="Aceleración"><span class="attr-short">ACE</span><span class="attr-value">71</span></span>
+                <span class="chip attr <%= rating_class(78) %>" title="Pase"><span class="attr-short">PAS</span><span class="attr-value">78</span></span>
+                <span class="chip attr <%= rating_class(76) %>" title="Visión"><span class="attr-short">VIS</span><span class="attr-value">76</span></span>
+                <span class="chip attr <%= rating_class(77) %>" title="Control"><span class="attr-short">CTR</span><span class="attr-value">77</span></span>
+                <span class="chip attr <%= rating_class(66) %>" title="Regate"><span class="attr-short">REG</span><span class="attr-value">66</span></span>
+                <span class="chip attr <%= rating_class(85) %>" title="Resistencia"><span class="attr-short">RES</span><span class="attr-value">85</span></span>
+                <span class="chip attr <%= rating_class(86) %>" title="Recuperación"><span class="attr-short">REC</span><span class="attr-value">86</span></span>
+              </div>
+            </td>
+            <td class="col-comment"><span class="comment">Ancla del mediocampo. Recupera todo pero no llega al área.</span></td>
+            <td class="col-actions">
+              <button class="icon-btn" type="button" title="Editar">✎</button>
+              <button class="icon-btn danger" type="button" title="Eliminar">🗑</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="col-name"><button class="link-name" type="button">Adam Pires</button></td>
+            <td class="col-num">25</td>
+            <td><span class="pos-tag pos-MED" title="Interior izquierdo">MI</span></td>
+            <td>Importante</td>
+            <td class="col-num"><span class="ovr is-good">78</span></td>
+            <td class="col-attrs">
+              <div class="chips">
+                <span class="chip attr <%= rating_class(82) %>" title="Velocidad"><span class="attr-short">VEL</span><span class="attr-value">82</span></span>
+                <span class="chip attr <%= rating_class(84) %>" title="Aceleración"><span class="attr-short">ACE</span><span class="attr-value">84</span></span>
+                <span class="chip attr <%= rating_class(81) %>" title="Pase"><span class="attr-short">PAS</span><span class="attr-value">81</span></span>
+                <span class="chip attr <%= rating_class(76) %>" title="Visión"><span class="attr-short">VIS</span><span class="attr-value">76</span></span>
+                <span class="chip attr <%= rating_class(82) %>" title="Control"><span class="attr-short">CTR</span><span class="attr-value">82</span></span>
+                <span class="chip attr <%= rating_class(84) %>" title="Regate"><span class="attr-short">REG</span><span class="attr-value">84</span></span>
+                <span class="chip attr <%= rating_class(75) %>" title="Resistencia"><span class="attr-short">RES</span><span class="attr-value">75</span></span>
+                <span class="chip attr <%= rating_class(68) %>" title="Recuperación"><span class="attr-short">REC</span><span class="attr-value">68</span></span>
+              </div>
+            </td>
+            <td class="col-comment"><span class="comment">Regate excelente, siempre busca el uno contra uno.</span></td>
+            <td class="col-actions">
+              <button class="icon-btn" type="button" title="Editar">✎</button>
+              <button class="icon-btn danger" type="button" title="Eliminar">🗑</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="col-name">
+              <button class="link-name" type="button">Owen Blake</button>
+              <span class="badge-xi">XI</span>
+            </td>
+            <td class="col-num">28</td>
+            <td><span class="pos-tag pos-MED" title="Mediocentro">MC</span></td>
+            <td>Esencial</td>
+            <td class="col-num"><span class="ovr is-elite">82</span></td>
+            <td class="col-attrs">
+              <div class="chips">
+                <span class="chip attr <%= rating_class(70) %>" title="Velocidad"><span class="attr-short">VEL</span><span class="attr-value">70</span></span>
+                <span class="chip attr <%= rating_class(71) %>" title="Aceleración"><span class="attr-short">ACE</span><span class="attr-value">71</span></span>
+                <span class="chip attr <%= rating_class(87) %>" title="Pase"><span class="attr-short">PAS</span><span class="attr-value">87</span></span>
+                <span class="chip attr <%= rating_class(86) %>" title="Visión"><span class="attr-short">VIS</span><span class="attr-value">86</span></span>
+                <span class="chip attr <%= rating_class(84) %>" title="Control"><span class="attr-short">CTR</span><span class="attr-value">84</span></span>
+                <span class="chip attr <%= rating_class(78) %>" title="Regate"><span class="attr-short">REG</span><span class="attr-value">78</span></span>
+                <span class="chip attr <%= rating_class(80) %>" title="Resistencia"><span class="attr-short">RES</span><span class="attr-value">80</span></span>
+                <span class="chip attr <%= rating_class(72) %>" title="Recuperación"><span class="attr-short">REC</span><span class="attr-value">72</span></span>
+              </div>
+            </td>
+            <td class="col-comment"><span class="comment">El cerebro del equipo. Todo pasa por sus pies.</span></td>
+            <td class="col-actions">
+              <button class="icon-btn" type="button" title="Editar">✎</button>
+              <button class="icon-btn danger" type="button" title="Eliminar">🗑</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="col-name">
+              <button class="link-name" type="button">Théo Marchal</button>
+              <span class="badge-xi">XI</span>
+            </td>
+            <td class="col-num">27</td>
+            <td><span class="pos-tag pos-DEL" title="Delantero centro">DC</span></td>
+            <td>Esencial</td>
+            <td class="col-num"><span class="ovr is-elite">83</span></td>
+            <td class="col-attrs">
+              <div class="chips">
+                <span class="chip attr <%= rating_class(84) %>" title="Velocidad"><span class="attr-short">VEL</span><span class="attr-value">84</span></span>
+                <span class="chip attr <%= rating_class(83) %>" title="Aceleración"><span class="attr-short">ACE</span><span class="attr-value">83</span></span>
+                <span class="chip attr <%= rating_class(87) %>" title="Definición"><span class="attr-short">DEF</span><span class="attr-value">87</span></span>
+                <span class="chip attr <%= rating_class(78) %>" title="Regate"><span class="attr-short">REG</span><span class="attr-value">78</span></span>
+                <span class="chip attr <%= rating_class(80) %>" title="Remate de cabeza"><span class="attr-short">CAB</span><span class="attr-value">80</span></span>
+                <span class="chip attr <%= rating_class(85) %>" title="Desmarque"><span class="attr-short">DES</span><span class="attr-value">85</span></span>
+                <span class="chip attr <%= rating_class(66) %>" title="Centros"><span class="attr-short">CEN</span><span class="attr-value">66</span></span>
+              </div>
+            </td>
+            <td class="col-comment"><span class="comment">Goleador de referencia. Objetivo: 20 goles en liga.</span></td>
+            <td class="col-actions">
+              <button class="icon-btn" type="button" title="Editar">✎</button>
+              <button class="icon-btn danger" type="button" title="Eliminar">🗑</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="col-name"><button class="link-name" type="button">Ivan Bogdan</button></td>
+            <td class="col-num">30</td>
+            <td><span class="pos-tag pos-DEL" title="Delantero centro">DC</span></td>
+            <td>Esporadico</td>
+            <td class="col-num"><span class="ovr is-good">74</span></td>
+            <td class="col-attrs">
+              <div class="chips">
+                <span class="chip attr <%= rating_class(64) %>" title="Velocidad"><span class="attr-short">VEL</span><span class="attr-value">64</span></span>
+                <span class="chip attr <%= rating_class(62) %>" title="Aceleración"><span class="attr-short">ACE</span><span class="attr-value">62</span></span>
+                <span class="chip attr <%= rating_class(79) %>" title="Definición"><span class="attr-short">DEF</span><span class="attr-value">79</span></span>
+                <span class="chip attr <%= rating_class(66) %>" title="Regate"><span class="attr-short">REG</span><span class="attr-value">66</span></span>
+                <span class="chip attr <%= rating_class(83) %>" title="Remate de cabeza"><span class="attr-short">CAB</span><span class="attr-value">83</span></span>
+                <span class="chip attr <%= rating_class(75) %>" title="Desmarque"><span class="attr-short">DES</span><span class="attr-value">75</span></span>
+                <span class="chip attr <%= rating_class(58) %>" title="Centros"><span class="attr-short">CEN</span><span class="attr-value">58</span></span>
+              </div>
+            </td>
+            <td class="col-comment"><span class="comment">Buen revulsivo de área, pero pide demasiado salario.</span></td>
+            <td class="col-actions">
+              <button class="icon-btn" type="button" title="Editar">✎</button>
+              <button class="icon-btn danger" type="button" title="Eliminar">🗑</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p id="squad-empty" class="empty hidden">No hay jugadores que coincidan con el filtro.</p>
+    </div>
+  </section>
+</main>
