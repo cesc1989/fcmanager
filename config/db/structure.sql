@@ -28,10 +28,12 @@ CREATE TABLE `player_traits`(
   `value` integer DEFAULT(0) NOT NULL,
   UNIQUE(`player_id`, `trait_id`)
 );
+CREATE UNIQUE INDEX `traits_name_index` ON `traits`(`name`);
 INSERT INTO schema_migrations (filename) VALUES
 ('20260930191342_create_traits.rb'),
 ('20260930192839_create_clubs.rb'),
 ('20260930193007_create_players.rb'),
 ('20260930194845_create_player_traits.rb'),
 ('20260930202012_rename_clubs.rb'),
-('20261001182736_alter_players_secondary_position.rb');
+('20261001182736_alter_players_secondary_position.rb'),
+('20261003120000_add_unique_index_to_traits_name.rb');
