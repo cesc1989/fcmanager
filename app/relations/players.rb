@@ -6,6 +6,8 @@ module Fcmanager
       schema :players, infer: true do
         associations do
           belongs_to :club
+
+          has_many :player_traits
         end
 
         attribute(
