@@ -5,5 +5,6 @@ module Fcmanager
     root to: "squad.index"
 
     get "/squad", to: "squad.index"
+    post "/squad", to: "squad.create"
   end
 end
