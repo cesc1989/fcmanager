@@ -9,7 +9,7 @@
     </div>
 
     <% position = position_info(player.primary_position) %>
-    <% traits = player.player_traits.sort_by { |pt| [-pt.value.to_i, pt.trait.name] } %>
+    <% groups = grouped_player_traits(player.player_traits) %>
 
     <div class="card">
       <div class="card-top">
@@ -28,23 +28,30 @@
         </div>
       </div>
 
+      <h4 class="card-subtitle">Comentario</h4>
+      <p class="card-comment"><%= player.comment.to_s.empty? ? "Sin comentarios todavía." : player.comment %></p>
+
       <h4 class="card-subtitle">Características</h4>
-      <% if traits.empty? %>
+      <% if groups.empty? %>
         <p class="muted">Sin características cargadas.</p>
       <% else %>
-        <div class="bars">
-          <% traits.each do |pt| %>
-            <div class="bar-row">
-              <span class="bar-label"><%= pt.trait.name %></span>
-              <span class="bar-track"><span class="bar-fill <%= rating_class(pt.value) %>" style="width: <%= [pt.value.to_i, 4].max %>%"></span></span>
-              <span class="bar-value"><%= pt.value %></span>
+        <div class="bars-columns">
+          <% groups.each do |group| %>
+            <div class="bars-column">
+              <h5 class="trait-group-title"><%= group[:label] %></h5>
+              <div class="bars">
+                <% group[:traits].each do |pt| %>
+                  <div class="bar-row">
+                    <span class="bar-label"><%= pt.trait.name %></span>
+                    <span class="bar-track"><span class="bar-fill <%= rating_class(pt.value) %>" style="width: <%= [pt.value.to_i, 4].max %>%"></span></span>
+                    <span class="bar-value"><%= pt.value %></span>
+                  </div>
+                <% end %>
+              </div>
             </div>
           <% end %>
         </div>
       <% end %>
-
-      <h4 class="card-subtitle">Comentario</h4>
-      <p class="card-comment"><%= player.comment.to_s.empty? ? "Sin comentarios todavía." : player.comment %></p>
     </div>
   </section>
 </main>

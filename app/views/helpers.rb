@@ -80,6 +80,18 @@ module Fcmanager
         TraitsCatalog.grouped(traits)
       end
 
+      # Traits de un jugador agrupados por `kind`, ordenados por valor desc.
+      def grouped_player_traits(player_traits)
+        TraitsCatalog::KIND_ORDER.filter_map do |kind|
+          group = player_traits
+            .select { |pt| pt.trait.kind.to_s == kind }
+            .sort_by { |pt| [-pt.value.to_i, pt.trait.name] }
+          next if group.empty?
+
+          {kind: kind, label: TraitsCatalog.kind_label(kind), traits: group}
+        end
+      end
+
       # Valor a mostrar en el input de un trait: primero lo enviado en los params
       # (para repoblar en un 422), luego el valor guardado, y por defecto 50.
       def trait_value(trait_id, values)
