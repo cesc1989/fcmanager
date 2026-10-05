@@ -1,5 +1,5 @@
 /* ===== Página de formulario ===== */
-.form-page { max-width: 760px; }
+.form-page { max-width: none; }
 
 .form-head {
   display: flex; align-items: center; justify-content: space-between;
@@ -15,12 +15,10 @@
 }
 
 /* ===== Campos ===== */
-.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.grid-2 .field:first-child { grid-column: span 2; }
+.form-fields { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.form-fields .field:first-child { grid-column: span 2; }
 .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 4px; }
 .field-label { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); font-weight: 700; }
-.form-panel > .field { margin-top: 14px; }
 
 .form-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
 
@@ -28,8 +26,13 @@
 .traits {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 24px;
   margin: 10px 0 26px;
+}
+
+.trait-group + .trait-group {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
 }
 
 .trait-group-title {
@@ -40,7 +43,7 @@
   color: var(--muted);
 }
 
-.trait-grid { gap: 16px 14px; }
+.trait-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px 14px; }
 .trait-grid .field { margin-bottom: 0; }
 
 /* ===== Errores ===== */
@@ -54,6 +57,11 @@
 .error-summary ul { margin: 6px 0 0; padding-left: 18px; }
 .error-summary .error { margin: 0; }
 
+@media (max-width: 1080px) {
+  .form-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 640px) {
-  .grid-2, .grid-3 { grid-template-columns: 1fr 1fr; }
+  .form-fields { grid-template-columns: 1fr; }
+  .form-fields .field:first-child { grid-column: auto; }
+  .trait-grid { grid-template-columns: 1fr 1fr; }
 }

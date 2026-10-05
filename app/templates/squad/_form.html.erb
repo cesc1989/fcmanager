@@ -11,7 +11,7 @@
 <% end %>
 
 <%= form_for("player", action, values: {player: values}, method: form_method) do |f| %>
-  <div class="grid-2">
+  <div class="form-fields">
     <label class="field">
       <span class="field-label">Nombre</span>
       <%= f.text_field "name", class: "input", required: true %>
@@ -75,7 +75,7 @@
       <section class="trait-group">
         <h5 class="trait-group-title"><%= group[:label] %></h5>
 
-        <div class="grid-3 trait-grid">
+        <div class="trait-grid">
           <% group[:traits].each do |trait| %>
             <label class="field">
               <span class="field-label"><%= trait.name %></span>
