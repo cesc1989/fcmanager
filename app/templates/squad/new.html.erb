@@ -1,0 +1,99 @@
+<main>
+  <section class="form-page">
+    <div class="form-head">
+      <h1>Nuevo jugador</h1>
+
+      <a href="<%= routes.path(:squad) %>" class="btn ghost sm">← Volver</a>
+    </div>
+
+    <div class="form-panel">
+      <% errors = request.params.errors %>
+      <% if errors.any? %>
+        <div class="error-summary">
+          <p class="error">Revisa los siguientes campos:</p>
+
+          <ul>
+            <% error_messages(errors).each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% defaults = {player: {name: "", age: 20, position: "MC", role: "Esporadico", overall: 65, height: 180, foot: "derecho", comment: ""}} %>
+
+      <%= form_for("player", routes.path(:squad), values: defaults) do |f| %>
+        <div class="grid-2">
+          <label class="field">
+            <span class="field-label">Nombre</span>
+            <%= f.text_field "name", class: "input", required: true %>
+            <% field_errors(errors, :player, :name).each do |message| %>
+              <p class="error"><%= message %></p>
+            <% end %>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Edad</span>
+            <%= f.number_field "age", class: "input", min: 15, max: 45 %>
+            <% field_errors(errors, :player, :age).each do |message| %>
+              <p class="error"><%= message %></p>
+            <% end %>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Posición</span>
+            <%= f.select "position", position_options, class: "input" %>
+            <% field_errors(errors, :player, :position).each do |message| %>
+              <p class="error"><%= message %></p>
+            <% end %>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Rol</span>
+            <%= f.select "role", role_options, class: "input" %>
+            <% field_errors(errors, :player, :role).each do |message| %>
+              <p class="error"><%= message %></p>
+            <% end %>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Promedio</span>
+            <%= f.number_field "overall", class: "input", min: 1, max: 99 %>
+            <% field_errors(errors, :player, :overall).each do |message| %>
+              <p class="error"><%= message %></p>
+            <% end %>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Altura</span>
+            <%= f.number_field "height", class: "input", min: 150, max: 210 %>
+            <% field_errors(errors, :player, :height).each do |message| %>
+              <p class="error"><%= message %></p>
+            <% end %>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Pie dominante</span>
+            <%= f.select "foot", foot_options, class: "input" %>
+            <% field_errors(errors, :player, :foot).each do |message| %>
+              <p class="error"><%= message %></p>
+            <% end %>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field-label">Comentario</span>
+          <%= f.text_area "comment", class: "input textarea", rows: 3 %>
+          <% field_errors(errors, :player, :comment).each do |message| %>
+            <p class="error"><%= message %></p>
+          <% end %>
+        </label>
+
+        <div class="form-actions">
+          <a href="<%= routes.path(:squad) %>" class="btn ghost">Cancelar</a>
+          <%= f.submit "Guardar", class: "btn primary" %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</main>

@@ -51,6 +51,66 @@ module Fcmanager
         normalized = name.to_s.unicode_normalize(:nfkd).gsub(/\p{Mn}/, "")
         normalized.upcase[0, 3]
       end
+
+      # Opciones para los select del formulario de jugador.
+      def position_options
+        PlayersCatalog.position_options
+      end
+
+      def role_options
+        PlayersCatalog.role_options
+      end
+
+      def foot_options
+        PlayersCatalog.foot_options
+      end
+
+      # Etiquetas legibles para el resumen de errores del formulario de jugador.
+      PLAYER_FIELD_LABELS = {
+        name: "Nombre",
+        age: "Edad",
+        position: "Posición",
+        role: "Rol",
+        overall: "Promedio",
+        height: "Altura",
+        foot: "Pie dominante",
+        comment: "Comentario"
+      }.freeze
+
+      # Aplana el árbol de errores de `request.params.errors` a una lista de
+      # mensajes con el nombre del campo (p. ej. "Edad: must be less than ...").
+      def error_messages(errors)
+        collect_error_messages(errors.to_h).map do |keys, message|
+          label = PLAYER_FIELD_LABELS[keys.last] || keys.last.to_s.capitalize
+          "#{label}: #{message}"
+        end
+      end
+
+      # Devuelve los mensajes de error para un campo anidado (p. ej. `:player, :name`).
+      def field_errors(errors, *keys)
+        value = keys.reduce(errors.to_h) do |node, key|
+          break [] unless node.respond_to?(:[])
+
+          found = node[key] || node[key.to_s]
+          break [] if found.nil?
+
+          found
+        end
+
+        value.is_a?(Array) ? value : []
+      end
+
+      private
+
+      def collect_error_messages(node, keys = [], acc = [])
+        case node
+        when Hash then node.each { |key, value| collect_error_messages(value, keys + [key], acc) }
+        when Array then node.each { |message| acc << [keys, message] }
+        else acc << [keys, node.to_s]
+        end
+
+        acc
+      end
     end
   end
 end

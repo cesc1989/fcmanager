@@ -4,7 +4,7 @@
       <span class="spacer"></span>
       <span id="squad-count" class="muted"><%= players.size %> jugadores</span>
 
-      <button id="btn-new" class="btn primary" type="button">+ Nuevo jugador</button>
+      <a href="<%= routes.path(:new_squad) %>" class="btn primary">+ Nuevo jugador</a>
     </div>
 
     <div class="table-wrap">
@@ -25,14 +25,27 @@
           <% players.each do |player| %>
             <% position = position_info(player.primary_position) %>
             <% traits = player.player_traits.sort_by { |pt| -pt.value.to_i } %>
+
             <tr>
               <td class="col-name">
                 <button class="link-name" type="button"><%= player.name %></button>
               </td>
+
               <td class="col-num"><%= player.age %></td>
-              <td><span class="pos-tag pos-<%= position[:group] %>" title="<%= position[:label] %>"><%= position[:short] %></span></td>
+
+              <td>
+                <span class="pos-tag pos-<%= position[:group] %>" title="<%= position[:label] %>">
+                  <%= position[:short] %>
+                </span>
+              </td>
+
               <td><%= role_label(player.role) %></td>
-              <td class="col-num"><span class="ovr <%= rating_class(player.overall) %>"><%= player.overall %></span></td>
+
+              <td class="col-num">
+                <span class="ovr <%= rating_class(player.overall) %>">
+                  <%= player.overall %>
+                </span>
+              </td>
 
               <td class="col-attrs">
                 <% if traits.empty? %>
@@ -40,13 +53,22 @@
                 <% else %>
                   <div class="chips">
                     <% traits.each do |pt| %>
-                      <span class="chip attr <%= rating_class(pt.value) %>" title="<%= pt.trait.name %>"><span class="attr-short"><%= trait_short(pt.trait.name) %></span><span class="attr-value"><%= pt.value %></span></span>
+                      <span class="chip attr <%= rating_class(pt.value) %>" title="<%= pt.trait.name %>">
+                        <span class="attr-short">
+                          <%= trait_short(pt.trait.name) %>
+                        </span>
+                        <span class="attr-value"><%= pt.value %></span>
+                      </span>
                     <% end %>
                   </div>
                 <% end %>
               </td>
 
-              <td class="col-comment"><span class="comment"><%= player.comment.to_s.empty? ? "—" : player.comment %></span></td>
+              <td class="col-comment">
+                <span class="comment">
+                  <%= player.comment.to_s.empty? ? "—" : player.comment %>
+                </span>
+              </td>
 
               <td class="col-actions">
                 <button class="icon-btn" type="button" title="Editar">✎</button>
@@ -62,6 +84,4 @@
       <% end %>
     </div>
   </section>
-
-  <%= render "squad/player_form" %>
 </main>

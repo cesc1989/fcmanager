@@ -1,0 +1,40 @@
+/* ===== Página de formulario ===== */
+.form-page { max-width: 760px; }
+
+.form-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 14px;
+}
+.form-head h1 { font-size: 20px; }
+
+.form-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+/* ===== Campos ===== */
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.grid-2 .field:first-child { grid-column: span 2; }
+.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 4px; }
+.field-label { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); font-weight: 700; }
+.form-panel > .field { margin-top: 14px; }
+
+.form-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+
+/* ===== Errores ===== */
+.error-summary {
+  border: 1px solid rgba(255, 107, 107, .4);
+  background: rgba(255, 107, 107, .08);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+.error-summary ul { margin: 6px 0 0; padding-left: 18px; }
+.error-summary .error { margin: 0; }
+
+@media (max-width: 640px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr 1fr; }
+}
