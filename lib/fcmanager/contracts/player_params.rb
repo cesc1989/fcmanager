@@ -19,6 +19,9 @@ module Fcmanager
           required(:height).filled(:integer, gteq?: 150, lteq?: 210)
           required(:foot).filled(:string)
           optional(:comment).maybe(:string)
+
+          # Traits dinámicos: se conservan como hash y se sanitan en la acción.
+          optional(:traits).hash
         end
       end
     end

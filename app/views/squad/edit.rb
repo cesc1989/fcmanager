@@ -8,6 +8,7 @@ module Fcmanager
 
         expose :player_id
         expose :player_values
+        expose :traits
       end
     end
   end

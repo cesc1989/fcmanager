@@ -24,6 +24,25 @@
 
 .form-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
 
+/* ===== Características (traits) ===== */
+.traits {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 10px 0 26px;
+}
+
+.trait-group-title {
+  margin: 0 0 14px;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.trait-grid { gap: 16px 14px; }
+.trait-grid .field { margin-bottom: 0; }
+
 /* ===== Errores ===== */
 .error-summary {
   border: 1px solid rgba(255, 107, 107, .4);

@@ -9,7 +9,17 @@
       <%= render "squad/form",
             action: routes.path(:squad),
             form_method: :post,
-            values: {name: "", age: 20, position: "MC", role: "Esporadico", overall: 65, height: 180, foot: "derecho", comment: ""},
+            values: {
+              name: "",
+              age: 20,
+              position: "MC",
+              role: "Esporadico",
+              overall: 65,
+              height: 180,
+              foot: "derecho",
+              comment: ""
+            },
+            traits: traits,
             cancel_path: routes.path(:squad),
             submit_label: "Guardar" %>
     </div>

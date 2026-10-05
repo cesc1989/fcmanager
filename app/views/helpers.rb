@@ -65,6 +65,25 @@ module Fcmanager
         PlayersCatalog.foot_options
       end
 
+      # Traits agrupados por `kind` para el formulario.
+      def grouped_traits(traits)
+        TraitsCatalog.grouped(traits)
+      end
+
+      # Valor a mostrar en el input de un trait: primero lo enviado en los params
+      # (para repoblar en un 422), luego el valor guardado, y por defecto 50.
+      def trait_value(trait_id, values)
+        submitted = request.params.dig(:player, :traits)
+
+        if submitted.is_a?(Hash)
+          value = submitted[trait_id] || submitted[trait_id.to_s]
+          return value unless value.nil? || value.to_s.empty?
+        end
+
+        stored = values.is_a?(Hash) ? values.dig(:traits, trait_id) : nil
+        stored.nil? ? PlayerForm::DEFAULT_TRAIT_VALUE : stored
+      end
+
       # Etiquetas legibles para el resumen de errores del formulario de jugador.
       PLAYER_FIELD_LABELS = {
         name: "Nombre",

@@ -69,6 +69,28 @@
     </label>
   </div>
 
+  <h4 class="card-subtitle">Características</h4>
+  <div class="traits">
+    <% grouped_traits(traits).each do |group| %>
+      <section class="trait-group">
+        <h5 class="trait-group-title"><%= group[:label] %></h5>
+
+        <div class="grid-3 trait-grid">
+          <% group[:traits].each do |trait| %>
+            <label class="field">
+              <span class="field-label"><%= trait.name %></span>
+              <%= f.number_field "traits.#{trait.id}",
+                    name: "player[traits][#{trait.id}]",
+                    id: "player-traits-#{trait.id}",
+                    value: trait_value(trait.id, values),
+                    class: "input", min: 1, max: 99 %>
+            </label>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+  </div>
+
   <label class="field">
     <span class="field-label">Comentario</span>
     <%= f.text_area "comment", class: "input textarea", rows: 3 %>

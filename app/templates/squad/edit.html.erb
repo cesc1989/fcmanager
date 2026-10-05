@@ -10,6 +10,7 @@
             action: routes.path(:update_squad, id: player_id),
             form_method: :patch,
             values: player_values,
+            traits: traits,
             cancel_path: routes.path(:squad),
             submit_label: "Guardar cambios" %>
     </div>

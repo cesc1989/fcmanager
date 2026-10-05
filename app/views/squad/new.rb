@@ -5,6 +5,8 @@ module Fcmanager
     module Squad
       class New < Fcmanager::View
         config.layout = "app"
+
+        expose :traits
       end
     end
   end
