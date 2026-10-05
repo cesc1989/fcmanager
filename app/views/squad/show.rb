@@ -5,6 +5,8 @@ module Fcmanager
     module Squad
       class Show < Fcmanager::View
         config.layout = "app"
+
+        expose :player
       end
     end
   end

@@ -4,8 +4,14 @@ module Fcmanager
   module Actions
     module Squad
       class Show < Fcmanager::Action
-        def handle(*, response)
-          response
+        include Deps["repos.player_repo"]
+
+        def handle(request, response)
+          player = player_repo.find_with_traits(request.params[:id])
+
+          return response.redirect_to(routes.path(:squad)) unless player
+
+          response[:player] = player
         end
       end
     end

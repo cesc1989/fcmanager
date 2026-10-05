@@ -47,6 +47,16 @@ module Fcmanager
         ROLES.fetch(key.to_s, key.to_s)
       end
 
+      # Claves de `dominant_foot` → presentación.
+      FOOT_LABELS = {
+        "derecho" => "Derecho",
+        "izquierdo" => "Izquierdo"
+      }.freeze
+
+      def foot_label(key)
+        FOOT_LABELS.fetch(key.to_s, key.to_s)
+      end
+
       def trait_short(name)
         normalized = name.to_s.unicode_normalize(:nfkd).gsub(/\p{Mn}/, "")
         normalized.upcase[0, 3]
