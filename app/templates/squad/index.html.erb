@@ -28,7 +28,7 @@
 
             <tr>
               <td class="col-name">
-                <button class="link-name" type="button"><%= player.name %></button>
+                <a href="<%= routes.path(:squad_player, id: player.id) %>" class="link-name"><%= player.name %></a>
               </td>
 
               <td class="col-num"><%= player.age %></td>

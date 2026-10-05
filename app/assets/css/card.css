@@ -1,0 +1,45 @@
+/* ===== Página de jugador (ficha) ===== */
+.player-page { max-width: 560px; }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.card-top { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; }
+.ovr-big {
+  width: 64px; height: 64px; border-radius: 14px;
+  background: var(--panel-2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.ovr-value { font-size: 26px; font-weight: 800; line-height: 1; }
+.ovr-label { font-size: 9px; letter-spacing: 1px; color: var(--muted); margin-top: 3px; }
+.ovr-big.is-elite .ovr-value { color: var(--elite); }
+.ovr-big.is-good .ovr-value { color: var(--good); }
+.ovr-big.is-mid .ovr-value { color: var(--mid); }
+.ovr-big.is-low .ovr-value { color: var(--low); }
+.card-meta { display: flex; flex-direction: column; gap: 5px; }
+.card-line { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+
+.bars { display: flex; flex-direction: column; gap: 8px; }
+.bar-row { display: grid; grid-template-columns: 130px 1fr 32px; align-items: center; gap: 10px; }
+.bar-label { font-size: 12.5px; color: var(--muted); }
+.bar-track { height: 8px; border-radius: 99px; background: var(--panel-2); overflow: hidden; }
+.bar-fill { display: block; height: 100%; border-radius: 99px; background: var(--low); }
+.bar-fill.is-elite { background: var(--elite); }
+.bar-fill.is-good { background: var(--good); }
+.bar-fill.is-mid { background: var(--mid); }
+.bar-value { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 13px; }
+
+.card-subtitle {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .8px;
+  color: var(--muted); margin: 18px 0 8px;
+}
+.card-comment {
+  margin: 0; background: var(--bg); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 12px; font-size: 13px; color: #cdd8e6;
+}
+
+.row-actions { display: flex; gap: 6px; }

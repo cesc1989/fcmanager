@@ -3,3 +3,4 @@ import "../css/header.css";
 import "../css/controls.css";
 import "../css/plantilla.css";
 import "../css/form.css";
+import "../css/card.css";

@@ -1,0 +1,66 @@
+<main>
+  <section class="player-page">
+    <div class="form-head">
+      <h1>Iker Salas</h1>
+      <div class="row-actions">
+        <a href="<%= routes.path(:squad) %>" class="btn ghost sm">← Volver</a>
+        <a href="<%= routes.path(:edit_squad, id: 1) %>" class="btn primary sm">Editar</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="ovr-big <%= rating_class(82) %>">
+          <span class="ovr-value">82</span>
+          <span class="ovr-label">PROM</span>
+        </div>
+
+        <div class="card-meta">
+          <div class="card-line">
+            <span class="pos-tag pos-POR" title="Portero">POR</span>
+            <span class="muted">Portero</span>
+          </div>
+          <div class="card-line">27 años · Esencial</div>
+          <div class="card-line muted">180 cm · Pie derecho</div>
+        </div>
+      </div>
+
+      <h4 class="card-subtitle">Características</h4>
+      <div class="bars">
+        <div class="bar-row">
+          <span class="bar-label">Reflejos</span>
+          <span class="bar-track"><span class="bar-fill <%= rating_class(85) %>" style="width: 85%"></span></span>
+          <span class="bar-value">85</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Reacción</span>
+          <span class="bar-track"><span class="bar-fill <%= rating_class(84) %>" style="width: 84%"></span></span>
+          <span class="bar-value">84</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Colocación</span>
+          <span class="bar-track"><span class="bar-fill <%= rating_class(83) %>" style="width: 83%"></span></span>
+          <span class="bar-value">83</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Juego aéreo</span>
+          <span class="bar-track"><span class="bar-fill <%= rating_class(80) %>" style="width: 80%"></span></span>
+          <span class="bar-value">80</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Manejo</span>
+          <span class="bar-track"><span class="bar-fill <%= rating_class(79) %>" style="width: 79%"></span></span>
+          <span class="bar-value">79</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Saque</span>
+          <span class="bar-track"><span class="bar-fill <%= rating_class(74) %>" style="width: 74%"></span></span>
+          <span class="bar-value">74</span>
+        </div>
+      </div>
+
+      <h4 class="card-subtitle">Comentario</h4>
+      <p class="card-comment">Seguro bajo palos, pero le cuesta con los pies. Renovar hasta 2029.</p>
+    </div>
+  </section>
+</main>

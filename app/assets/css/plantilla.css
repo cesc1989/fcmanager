@@ -27,6 +27,7 @@
 .link-name {
   background: none; border: 0; padding: 0; color: var(--text);
   font: inherit; font-weight: 650; cursor: pointer; text-align: left;
+  text-decoration: none;
 }
 .link-name:hover { color: var(--accent); text-decoration: underline; }
 
