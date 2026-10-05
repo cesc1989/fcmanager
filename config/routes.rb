@@ -6,6 +6,8 @@ module Fcmanager
 
     get "/squad", to: "squad.index", as: :squad
     get "/squad/new", to: "squad.new", as: :new_squad
+    get "/squad/:id/edit", to: "squad.edit", as: :edit_squad
+    patch "/squad/:id/edit", to: "squad.update", as: :update_squad
     post "/squad", to: "squad.create"
   end
 end

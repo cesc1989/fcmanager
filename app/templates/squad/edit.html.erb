@@ -1,0 +1,17 @@
+<main>
+  <section class="form-page">
+    <div class="form-head">
+      <h1>Editar jugador</h1>
+      <a href="<%= routes.path(:squad) %>" class="btn ghost sm">← Volver</a>
+    </div>
+
+    <div class="form-panel">
+      <%= render "squad/form",
+            action: routes.path(:update_squad, id: player_id),
+            form_method: :patch,
+            values: player_values,
+            cancel_path: routes.path(:squad),
+            submit_label: "Guardar cambios" %>
+    </div>
+  </section>
+</main>

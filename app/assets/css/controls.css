@@ -20,6 +20,7 @@
   border: 0; background: transparent; color: var(--muted);
   cursor: pointer; font-size: 15px; line-height: 1;
   padding: 6px 7px; border-radius: 8px;
+  text-decoration: none;
 }
 .icon-btn:hover { background: var(--panel-2); color: var(--text); }
 .icon-btn.danger:hover { color: var(--danger); }
