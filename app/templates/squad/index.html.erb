@@ -3,6 +3,7 @@
     <div class="toolbar">
       <span class="spacer"></span>
       <span id="squad-count" class="muted"><%= players.size %> jugadores</span>
+
       <button id="btn-new" class="btn primary" type="button">+ Nuevo jugador</button>
     </div>
 
@@ -32,6 +33,7 @@
               <td><span class="pos-tag pos-<%= position[:group] %>" title="<%= position[:label] %>"><%= position[:short] %></span></td>
               <td><%= role_label(player.role) %></td>
               <td class="col-num"><span class="ovr <%= rating_class(player.overall) %>"><%= player.overall %></span></td>
+
               <td class="col-attrs">
                 <% if traits.empty? %>
                   <span class="muted">—</span>
@@ -43,7 +45,9 @@
                   </div>
                 <% end %>
               </td>
+
               <td class="col-comment"><span class="comment"><%= player.comment.to_s.empty? ? "—" : player.comment %></span></td>
+
               <td class="col-actions">
                 <button class="icon-btn" type="button" title="Editar">✎</button>
                 <button class="icon-btn danger" type="button" title="Eliminar">🗑</button>
@@ -52,6 +56,7 @@
           <% end %>
         </tbody>
       </table>
+
       <% if players.empty? %>
         <p id="squad-empty" class="empty">No hay jugadores todavía.</p>
       <% end %>

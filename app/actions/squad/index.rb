@@ -6,7 +6,7 @@ module Fcmanager
       class Index < Fcmanager::Action
         include Deps["repos.player_repo"]
 
-        def handle(*, response)
+        def handle(request, response)
           response[:players] = player_repo.all
         end
       end
