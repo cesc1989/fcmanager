@@ -85,7 +85,7 @@ module Fcmanager
         TraitsCatalog::KIND_ORDER.filter_map do |kind|
           group = player_traits
             .select { |pt| pt.trait.kind.to_s == kind }
-            .sort_by { |pt| [-pt.value.to_i, pt.trait.name] }
+            .sort_by { |pt| pt.trait.name }
           next if group.empty?
 
           {kind: kind, label: TraitsCatalog.kind_label(kind), traits: group}
