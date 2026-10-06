@@ -10,19 +10,21 @@ module Fcmanager
   #   - `:db`    el entero con el que se persiste
   module PlayersCatalog
     POSITIONS = [
-      {key: "gk", value: "POR", label: "POR · Portero", group: "POR", db: 0},
-      {key: "lb", value: "LI", label: "LI · Lateral izquierdo", group: "DEF", db: 4},
-      {key: "cb", value: "DFC", label: "DFC · Defensa central", group: "DEF", db: 2},
-      {key: "rb", value: "LD", label: "LD · Lateral derecho", group: "DEF", db: 3},
-      {key: "cdm", value: "MCD", label: "MCD · Mediocentro defensivo", group: "MED", db: 5},
-      {key: "lm", value: "MI", label: "MI · Interior izquierdo", group: "MED", db: 8},
-      {key: "cm", value: "MC", label: "MC · Mediocentro", group: "MED", db: 6},
-      {key: "rm", value: "MD", label: "MD · Interior derecho", group: "MED", db: 7},
-      {key: "cam", value: "MP", label: "MP · Mediapunta", group: "MED", db: 9},
-      {key: "lw", value: "EI", label: "EI · Extremo izquierdo", group: "DEL", db: 11},
-      {key: "cf", value: "DC", label: "DC · Delantero centro", group: "DEL", db: 12},
-      {key: "rw", value: "ED", label: "ED · Extremo derecho", group: "DEL", db: 10}
+      {key: "po", value: "POR", label: "POR · Portero", group: "POR", db: 0},
+      {key: "dfi", value: "DFI", label: "DFI · Lateral izquierdo", group: "DEF", db: 4},
+      {key: "dfc", value: "DFC", label: "DFC · Defensa central", group: "DEF", db: 2},
+      {key: "dfd", value: "DFD", label: "DFD · Lateral derecho", group: "DEF", db: 3},
+      {key: "mcd", value: "MCD", label: "MCD · Mediocentro defensivo", group: "MED", db: 5},
+      {key: "mi", value: "MI", label: "MI · Interior izquierdo", group: "MED", db: 8},
+      {key: "mc", value: "MC", label: "MC · Mediocentro", group: "MED", db: 6},
+      {key: "mco", value: "MCO", label: "MCO · Mediocentro ofensivo", group: "MED", db: 9},
+      {key: "md", value: "MD", label: "MD · Interior derecho", group: "MED", db: 7},
+      {key: "ei", value: "EI", label: "EI · Extremo izquierdo", group: "DEL", db: 11},
+      {key: "ed", value: "ED", label: "ED · Extremo derecho", group: "DEL", db: 10},
+      {key: "dc", value: "DC", label: "DC · Delantero centro", group: "DEL", db: 12}
     ].freeze
+
+    POSITION_ORDER = POSITIONS.map { |position| position[:key] }.freeze
 
     ROLES = [
       {key: "promesa", value: "Promesa", label: "Promesa", db: 0},
@@ -48,6 +50,11 @@ module Fcmanager
 
     def position_options
       POSITIONS.map { |position| [position[:label], position[:value]] }
+    end
+
+    # Posición (clave de la relación) → índice en el orden canónico del juego.
+    def position_rank(key)
+      POSITION_ORDER.index(key.to_s) || POSITION_ORDER.size
     end
 
     def role_options

@@ -6,18 +6,18 @@ module Fcmanager
     module Helpers
       # Claves de `primary_position` (app/relations/players.rb) → presentación.
       POSITIONS = {
-        "gk" => {short: "POR", group: "POR", label: "Portero"},
-        "cb" => {short: "DFC", group: "DEF", label: "Defensa central"},
-        "rb" => {short: "LD", group: "DEF", label: "Lateral derecho"},
-        "lb" => {short: "LI", group: "DEF", label: "Lateral izquierdo"},
-        "cdm" => {short: "MCD", group: "MED", label: "Mediocentro defensivo"},
-        "cm" => {short: "MC", group: "MED", label: "Mediocentro"},
-        "rm" => {short: "MD", group: "MED", label: "Interior derecho"},
-        "lm" => {short: "MI", group: "MED", label: "Interior izquierdo"},
-        "cam" => {short: "MP", group: "MED", label: "Mediapunta"},
-        "rw" => {short: "ED", group: "DEL", label: "Extremo derecho"},
-        "lw" => {short: "EI", group: "DEL", label: "Extremo izquierdo"},
-        "cf" => {short: "DC", group: "DEL", label: "Delantero centro"}
+        "po" => {short: "POR", group: "POR", label: "Portero"},
+        "dfi" => {short: "DFI", group: "DEF", label: "Lateral izquierdo"},
+        "dfc" => {short: "DFC", group: "DEF", label: "Defensa central"},
+        "dfd" => {short: "DFD", group: "DEF", label: "Lateral derecho"},
+        "mcd" => {short: "MCD", group: "MED", label: "Mediocentro defensivo"},
+        "mi" => {short: "MI", group: "MED", label: "Interior izquierdo"},
+        "mc" => {short: "MC", group: "MED", label: "Mediocentro"},
+        "mco" => {short: "MCO", group: "MED", label: "Mediocentro ofensivo"},
+        "md" => {short: "MD", group: "MED", label: "Interior derecho"},
+        "ei" => {short: "EI", group: "DEL", label: "Extremo izquierdo"},
+        "ed" => {short: "ED", group: "DEL", label: "Extremo derecho"},
+        "dc" => {short: "DC", group: "DEL", label: "Delantero centro"}
       }.freeze
 
       # Claves de `role` (app/relations/players.rb) → presentación.

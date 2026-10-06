@@ -43,18 +43,18 @@ module Fcmanager
           :primary_position,
           Types::Integer,
           read: Types::String.enum(
-            "gk" => 0,
-            "cb" => 2,
-            "rb" => 3,
-            "lb" => 4,
-            "cdm" => 5,
-            "cm" => 6,
-            "rm" => 7,
-            "lm" => 8,
-            "cam" => 9,
-            "rw" => 10,
-            "lw" => 11,
-            "cf" => 12
+            "po" => 0,
+            "dfc" => 2,
+            "dfd" => 3,
+            "dfi" => 4,
+            "mcd" => 5,
+            "mc" => 6,
+            "md" => 7,
+            "mi" => 8,
+            "mco" => 9,
+            "ed" => 10,
+            "ei" => 11,
+            "dc" => 12
           )
         )
       end

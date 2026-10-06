@@ -8,7 +8,8 @@ module Fcmanager
       end
 
       def all
-        players.combine(player_traits: :trait).order(:primary_position).to_a
+        players.combine(player_traits: :trait).to_a
+          .sort_by { |player| [PlayersCatalog.position_rank(player.primary_position), player.id] }
       end
 
       def find(id)
