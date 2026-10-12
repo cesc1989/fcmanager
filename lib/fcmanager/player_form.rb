@@ -4,7 +4,6 @@ module Fcmanager
   # Traducción entre los params validados del formulario y los atributos de la DB,
   # y viceversa para precargar la edición.
   module PlayerForm
-    # Valor por defecto de cada característica.
     DEFAULT_TRAIT_VALUE = 50
 
     module_function
