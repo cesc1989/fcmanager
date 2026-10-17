@@ -19,6 +19,10 @@ gem "sqlite3"
 
 group :development do
   gem "hanami-webconsole", "~> 3.0.0"
+
+  # Editor tooling (LSP + linter)
+  gem "rubocop", "~> 1.92", require: false
+  gem "solargraph", require: false
 end
 
 group :development, :test do

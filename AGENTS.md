@@ -12,7 +12,8 @@ App is in an early DB-modeling stage: routes, actions, and views are still empty
 - Migrations + seeds: `hanami db prepare` (or `hanami db migrate` / `hanami db seed`)
 - Asset build (prod): `hanami assets compile`
 
-No RuboCop/standardrb is configured; do not assume a lint command.
+- Lint: `bundle exec rubocop` (config in `.rubocop.yml`; existing offenses not yet fixed)
+- Solargraph (LSP for the editor) is configured in `.solargraph.yml`; after changing gems run `bundle exec solargraph gems`.
 
 ## Non-obvious conventions
 
