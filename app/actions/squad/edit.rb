@@ -12,7 +12,7 @@ module Fcmanager
           return response.redirect_to(routes.path(:squad)) unless player
 
           response[:player_id] = player.id
-          response[:player_values] = PlayerForm.values(player)
+          response[:player] = PlayerForm.values(player)
           response[:traits] = trait_repo.all
         end
       end

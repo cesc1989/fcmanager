@@ -22,7 +22,7 @@ module Fcmanager
             response.redirect_to routes.path(:squad)
           else
             response[:player_id] = player.id
-            response[:player_values] = PlayerForm.values(player)
+            response[:player] = PlayerForm.values(player)
             response[:traits] = trait_repo.all
             response.status = 422
           end

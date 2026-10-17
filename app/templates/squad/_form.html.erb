@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_for("player", action, values: {player: values}, method: form_method) do |f| %>
+<%= form_for("player", form_action, method: form_method) do |f| %>
   <div class="form-fields">
     <label class="field">
       <span class="field-label">Nombre</span>
@@ -82,7 +82,7 @@
               <%= f.number_field "traits.#{trait.id}",
                     name: "player[traits][#{trait.id}]",
                     id: "player-traits-#{trait.id}",
-                    value: trait_value(trait.id, values),
+                    value: trait_value(trait.id, player),
                     class: "input", min: 1, max: 99 %>
             </label>
           <% end %>
@@ -100,7 +100,7 @@
   </label>
 
   <div class="form-actions">
-    <a href="<%= cancel_path %>" class="btn ghost">Cancelar</a>
+    <a href="<%= routes.path(:squad) %>" class="btn ghost">Cancelar</a>
     <%= f.submit submit_label, class: "btn primary" %>
   </div>
 <% end %>

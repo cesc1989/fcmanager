@@ -6,6 +6,17 @@ module Fcmanager
   module PlayerForm
     DEFAULT_TRAIT_VALUE = 50
 
+    DEFAULTS = {
+      name: "",
+      age: 20,
+      position: "MC",
+      role: "Esporadico",
+      overall: 65,
+      height: 180,
+      foot: "derecho",
+      comment: ""
+    }.freeze
+
     module_function
 
     def attributes(params)
