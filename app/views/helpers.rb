@@ -4,6 +4,11 @@
 module Fcmanager
   module Views
     module Helpers
+      # Cantidad de traits a mostrar por cada jugador en el index.
+      #
+      # Sin esto cada celda se estira demasiado hacía abajo.
+      QTY_OF_TRAITS_TO_SHOW = 10
+
       # Claves de `primary_position` (app/relations/players.rb) → presentación.
       POSITIONS = {
         "po" => {short: "POR", group: "POR", label: "Portero"},

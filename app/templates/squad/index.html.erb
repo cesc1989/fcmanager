@@ -24,7 +24,7 @@
         <tbody id="squad-body">
           <% players.each do |player| %>
             <% position = position_info(player.primary_position) %>
-            <% traits = player.player_traits.sort_by { |pt| pt.trait.name } %>
+            <% traits = player.player_traits.sort_by { |pt| -pt.value }.take(QTY_OF_TRAITS_TO_SHOW) %>
 
             <tr>
               <td class="col-name">
