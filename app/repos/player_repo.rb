@@ -3,12 +3,16 @@
 module Fcmanager
   module Repos
     class PlayerRepo < Fcmanager::DB::Repo
+      include Deps["repos.club_repo"]
+
       def create(attributes)
         players.changeset(:create, attributes).commit
       end
 
       def all
-        players.combine(player_traits: :trait).to_a
+        players
+          .where(club_id: club_repo.grimsby_town[:id])
+          .combine(player_traits: :trait).to_a
           .sort_by { |player| [PlayersCatalog.position_rank(player.primary_position), player.id] }
       end
 
