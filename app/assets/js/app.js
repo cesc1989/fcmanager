@@ -4,6 +4,7 @@ import "../css/controls.css";
 import "../css/plantilla.css";
 import "../css/form.css";
 import "../css/card.css";
+import "../css/compare.css";
 
 // Modal de confirmación para liberar un jugador (vista Plantilla).
 const releaseDialog = document.getElementById("release-dialog");

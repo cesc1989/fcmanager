@@ -11,5 +11,7 @@ module Fcmanager
     patch "/squad/:id/release", to: "squad.release", as: :release_squad
     post "/squad", to: "squad.create"
     get "/squad/:id", to: "squad.show", as: :squad_player
+
+    get "/compare", to: "compare.show", as: :compare
   end
 end

@@ -1,0 +1,113 @@
+<main>
+  <section class="compare-layout">
+    <aside class="bench">
+      <div class="bench-head">
+        <h2>
+          Jugadores
+        </h2>
+
+        <div class="row-actions">
+          <a href="<%= routes.path(:compare) %>"
+             class="btn ghost sm"
+          >
+            Vaciar
+          </a>
+        </div>
+      </div>
+
+      <p class="hint">
+        Arrastra un jugador a un cuadro, o haz clic para cargarlo en el primero libre.
+      </p>
+
+      <div class="bench-list">
+        <% if players.empty? %>
+          <p class="empty">
+            Añade jugadores desde la pestaña Plantilla.
+          </p>
+        <% end %>
+
+        <% grouped_squad(players).each do |group| %>
+          <div class="bench-group">
+            <%= group[:label] %>
+
+            <span class="muted">
+              <%= group[:players].size %>
+            </span>
+          </div>
+
+          <% group[:players].each do |player| %>
+            <% position = position_info(player.primary_position) %>
+            <% box = pair.box_of(player.id) %>
+
+            <a href="<%= compare_path(pair.with(player.id)) %>"
+               class="bench-item <%= "is-on-pitch" if box %>"
+               draggable="true"
+               data-player-id="<%= player.id %>"
+            >
+              <span class="pos-tag pos-<%= position[:group] %>"
+                    title="<%= position[:label] %>"
+              >
+                <%= position[:short] %>
+              </span>
+
+              <span class="bench-info">
+                <span class="bench-name">
+                  <%= player.name %>
+                </span>
+
+                <span class="bench-sub">
+                  <%= player.age %> años · <%= role_label(player.role) %>
+                </span>
+              </span>
+
+              <% if box %>
+                <span class="badge-xi">
+                  <%= box.to_s.upcase %>
+                </span>
+              <% end %>
+
+              <span class="ovr <%= rating_class(player.overall) %>">
+                <%= player.overall %>
+              </span>
+            </a>
+          <% end %>
+        <% end %>
+      </div>
+    </aside>
+
+    <div class="compare-panel">
+      <div class="compare-boxes">
+        <%= render "compare/box", box: :a, player: player_a, pair: pair, players: players %>
+
+        <a href="<%= compare_path(pair.swap) %>"
+           class="btn ghost swap-btn"
+           title="Intercambiar jugadores"
+        >
+          ⇄
+        </a>
+
+        <%= render "compare/box", box: :b, player: player_b, pair: pair, players: players %>
+      </div>
+
+      <div class="compare-result">
+        <% if comparison %>
+          <%= render "compare/result", comparison: comparison %>
+        <% else %>
+          <div class="cmp-placeholder">
+            <p>
+              <% if pair.a || pair.b %>
+                Falta un jugador en el cuadro <%= pair.a ? "B" : "A" %>.
+              <% else %>
+                Carga dos jugadores para ver la comparación.
+              <% end %>
+            </p>
+
+            <p class="hint">
+              Arrástralos desde la lista, elígelos en el desplegable de cada cuadro, o pulsa “Comparar” en la ficha de un jugador.
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</main>

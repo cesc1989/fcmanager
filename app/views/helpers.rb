@@ -97,6 +97,20 @@ module Fcmanager
         end
       end
 
+      # Plantilla agrupada por línea para la lista de la página Comparar.
+      def grouped_squad(players)
+        PlayersCatalog::GROUPS.filter_map do |group|
+          members = players.select { |player| PlayersCatalog.group_of(player.primary_position) == group[:key] }
+          next if members.empty?
+
+          {key: group[:key], label: group[:label], players: members}
+        end
+      end
+
+      def compare_path(pair)
+        routes.path(:compare, **pair.to_params)
+      end
+
       # Valor a mostrar en el input de un trait: primero lo enviado en los params
       # (para repoblar en un 422), luego el valor guardado, y por defecto 50.
       def trait_value(trait_id, values)

@@ -1,0 +1,96 @@
+<% other = box == :a ? :b : :a %>
+<% other_id = pair.public_send(other) %>
+
+<div class="compare-box <%= player ? "is-filled" : "is-empty" %>"
+     data-compare-box="<%= box %>"
+>
+  <div class="compare-box-head">
+    <span class="compare-box-title">
+      Jugador <%= box.to_s.upcase %>
+    </span>
+
+    <% if player %>
+      <a href="<%= compare_path(pair.without(box)) %>"
+         class="icon-btn"
+         title="Quitar del cuadro"
+      >
+        ×
+      </a>
+    <% end %>
+  </div>
+
+  <% if player %>
+    <% position = position_info(player.primary_position) %>
+
+    <div class="compare-box-player">
+      <div class="compare-box-meta">
+        <a href="<%= routes.path(:squad_player, id: player.id) %>"
+           class="link-name compare-name"
+           title="Ver ficha completa"
+        >
+          <%= player.name %>
+        </a>
+
+        <div class="card-line">
+          <span class="pos-tag pos-<%= position[:group] %>"
+                title="<%= position[:label] %>"
+          >
+            <%= position[:short] %>
+          </span>
+
+          <span class="muted">
+            <%= player.age %> años · <%= role_label(player.role) %>
+          </span>
+        </div>
+      </div>
+
+      <div class="ovr-big <%= rating_class(player.overall) %>">
+        <span class="ovr-value">
+          <%= player.overall %>
+        </span>
+
+        <span class="ovr-label">
+          PROM
+        </span>
+      </div>
+    </div>
+  <% else %>
+    <div class="compare-drop">
+      Arrastra aquí un jugador
+    </div>
+  <% end %>
+
+  <form method="get"
+        action="<%= routes.path(:compare) %>"
+        class="js-autosubmit"
+  >
+    <% if other_id %>
+      <input type="hidden"
+             name="<%= other %>"
+             value="<%= other_id %>"
+      >
+    <% end %>
+
+    <select name="<%= box %>"
+            class="input compare-picker"
+    >
+      <option value="">
+        — elegir jugador —
+      </option>
+
+      <% players.each do |option| %>
+        <option value="<%= option.id %>" <%= "selected" if option.id == player&.id %>>
+          <%= position_info(option.primary_position)[:short] %> · <%= option.name %> (<%= option.overall %>)
+        </option>
+      <% end %>
+    </select>
+
+    <noscript>
+      <button type="submit"
+              class="btn ghost sm"
+      >
+        Cargar
+      </button>
+    </noscript>
+  </form>
+</div>

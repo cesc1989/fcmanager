@@ -1,0 +1,97 @@
+<% wins = comparison.wins %>
+
+<div class="cmp-summary">
+  <span class="chip">
+    <%= comparison.a.name %> gana <%= wins[:a] %>
+  </span>
+
+  <span class="chip">
+    Empates <%= wins[:tie] %>
+  </span>
+
+  <span class="chip">
+    <%= comparison.b.name %> gana <%= wins[:b] %>
+  </span>
+
+  <% if comparison.different_lines? %>
+    <span class="chip warn">
+      Líneas distintas
+    </span>
+  <% end %>
+</div>
+
+<% comparison.sections.each do |section| %>
+  <div class="cmp-section">
+    <h4 class="card-subtitle">
+      <%= section.title %>
+    </h4>
+
+    <% section.rows.each do |row| %>
+      <div class="cmp-row">
+        <div class="cmp-side cmp-a">
+          <span class="cmp-value <%= "is-better" if row.winner == :a %> <%= "is-none" if row.a.nil? %>">
+            <%= row.a.nil? ? "—" : row.a %>
+          </span>
+
+          <span class="cmp-track">
+            <% unless row.a.nil? %>
+              <span class="cmp-fill <%= rating_class(row.a) %> <%= "is-better" if row.winner == :a %>"
+                    style="width: <%= [row.a, 4].max %>%"
+              >
+              </span>
+            <% end %>
+          </span>
+        </div>
+
+        <div class="cmp-middle">
+          <span class="cmp-label">
+            <%= row.label %>
+          </span>
+
+          <% if row.diff_label %>
+            <span class="cmp-diff <%= "is-tie" if row.diff.zero? %> <%= "is-neutral" if row.mode == :neutral %>"
+                  title="<%= row.tooltip %>"
+            >
+              <%= row.diff_label %>
+            </span>
+          <% end %>
+        </div>
+
+        <div class="cmp-side cmp-b">
+          <span class="cmp-track">
+            <% unless row.b.nil? %>
+              <span class="cmp-fill <%= rating_class(row.b) %> <%= "is-better" if row.winner == :b %>"
+                    style="width: <%= [row.b, 4].max %>%"
+              >
+              </span>
+            <% end %>
+          </span>
+
+          <span class="cmp-value <%= "is-better" if row.winner == :b %> <%= "is-none" if row.b.nil? %>">
+            <%= row.b.nil? ? "—" : row.b %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="cmp-section">
+  <h4 class="card-subtitle">
+    Comentarios
+  </h4>
+
+  <div class="cmp-notes">
+    <% [comparison.a, comparison.b].each do |player| %>
+      <div class="cmp-note">
+        <h5>
+          <%= player.name %>
+        </h5>
+
+        <p class="card-comment">
+          <%= player.comment.to_s.empty? ? "Sin comentarios todavía." : player.comment %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
