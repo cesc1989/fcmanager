@@ -4,7 +4,11 @@
 module Fcmanager
   module Views
     class Context < Hanami::View::Context
-      # Define your view context here. See https://hanakai.org/learn/hanami/views/context/ for details.
+      include Deps["repos.club_repo"]
+
+      def club_name
+        club_repo.grimsby_town[:name]
+      end
     end
   end
 end
