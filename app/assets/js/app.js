@@ -16,3 +16,55 @@ document.querySelectorAll(".js-release").forEach((button) => {
     releaseDialog.showModal();
   });
 });
+
+// Comparar: al cambiar el desplegable de un cuadro se envía su formulario.
+document.querySelectorAll(".js-autosubmit select").forEach((select) => {
+  select.addEventListener("change", () => select.form.requestSubmit());
+});
+
+// Comparar: arrastrar un jugador de la lista a un cuadro reescribe ?a=&b=.
+// Si el jugador ya estaba en el otro cuadro, los dos se intercambian (como el
+// setCompare del prototipo). El servidor vuelve a validar los ids.
+document.querySelectorAll(".bench-item[data-player-id]").forEach((item) => {
+  item.addEventListener("dragstart", (event) => {
+    event.dataTransfer.effectAllowed = "move";
+    event.dataTransfer.setData("text/plain", item.dataset.playerId);
+    item.classList.add("is-dragging");
+  });
+
+  item.addEventListener("dragend", () => item.classList.remove("is-dragging"));
+});
+
+document.querySelectorAll("[data-compare-box]").forEach((zone) => {
+  zone.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    zone.classList.add("is-over");
+  });
+
+  zone.addEventListener("dragleave", () => zone.classList.remove("is-over"));
+
+  zone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    zone.classList.remove("is-over");
+
+    const id = event.dataTransfer.getData("text/plain");
+    if (!id) return;
+
+    const box = zone.dataset.compareBox;
+    const other = box === "a" ? "b" : "a";
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get(other) === id) {
+      const current = params.get(box);
+
+      if (current) {
+        params.set(other, current);
+      } else {
+        params.delete(other);
+      }
+    }
+
+    params.set(box, id);
+    window.location.search = params.toString();
+  });
+});

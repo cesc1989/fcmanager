@@ -24,6 +24,9 @@
 }
 .tab:hover { color: var(--text); }
 .tab.is-active { background: var(--accent); color: var(--accent-ink); }
+a.tab { text-decoration: none; display: inline-block; }
+.tab.is-disabled { opacity: .4; cursor: not-allowed; }
+.tab.is-disabled:hover { color: var(--muted); }
 
 .header-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 .save-state { font-size: 11px; color: var(--muted); padding-right: 6px; }

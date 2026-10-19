@@ -21,9 +21,23 @@
       </div>
 
       <nav class="tabs">
-        <button class="tab is-active" type="button">Plantilla</button>
-        <button class="tab" type="button">Formación</button>
-        <button class="tab" type="button">Comparar</button>
+        <a href="<%= routes.path(:squad) %>"
+           class="<%= tab_class(:squad) %>"
+        >
+          Plantilla
+        </a>
+
+        <span class="tab is-disabled"
+              title="Próximamente"
+        >
+          Formación
+        </span>
+
+        <a href="<%= routes.path(:compare) %>"
+           class="<%= tab_class(:compare) %>"
+        >
+          Comparar
+        </a>
       </nav>
 
       <div>

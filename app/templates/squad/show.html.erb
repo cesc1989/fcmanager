@@ -4,6 +4,13 @@
       <h1><%= player.name %></h1>
       <div class="row-actions">
         <a href="<%= routes.path(:squad) %>" class="btn ghost sm">← Volver</a>
+
+        <a href="<%= routes.path(:compare, a: player.id) %>"
+           class="btn ghost sm"
+        >
+          Comparar
+        </a>
+
         <a href="<%= routes.path(:edit_squad, id: player.id) %>" class="btn primary sm">Editar</a>
       </div>
     </div>

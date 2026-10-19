@@ -111,6 +111,18 @@ module Fcmanager
         routes.path(:compare, **pair.to_params)
       end
 
+      # Clase de una pestaña del header según la ruta actual.
+      def tab_class(section)
+        path = request? ? request.path : ""
+        active = case section
+                 when :squad then path == "/" || path.start_with?("/squad")
+                 when :compare then path.start_with?("/compare")
+                 else false
+                 end
+
+        active ? "tab is-active" : "tab"
+      end
+
       # Valor a mostrar en el input de un trait: primero lo enviado en los params
       # (para repoblar en un 422), luego el valor guardado, y por defecto 50.
       def trait_value(trait_id, values)
