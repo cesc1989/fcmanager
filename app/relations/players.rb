@@ -5,8 +5,8 @@ module Fcmanager
     class Players < Fcmanager::DB::Relation
       schema :players, infer: true do
         associations do
-          # Puede ser nulo. Cuando es nulo es porque el jugador ya no está en el club.
-          # Sea porque lo vendí o porque es agente libre.
+          # Puede ser nulo. Cuando el jugador sale de la plantilla (botón "Liberar")
+          # se le asigna el club "Agente Libre" en vez de dejarlo en nulo.
           belongs_to :club
 
           has_many :player_traits

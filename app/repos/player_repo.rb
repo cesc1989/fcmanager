@@ -28,6 +28,11 @@ module Fcmanager
         players.by_pk(id).changeset(:update, attributes).commit
       end
 
+      # Saca al jugador de la plantilla pasándolo al club "Agente Libre".
+      def release(id)
+        update(id, club_id: club_repo.free_agent[:id])
+      end
+
       def create_with_traits(attributes, traits)
         transaction do
           player = players.changeset(:create, attributes).commit

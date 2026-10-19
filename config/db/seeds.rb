@@ -93,3 +93,12 @@ TRAITS_BY_KIND.each do |kind, names|
     )
   end
 end
+
+# Clubes que la app busca por nombre (ver app/repos/club_repo.rb).
+CLUBS = ["Grimsby Town", "Agente Libre"].freeze
+
+clubs = Hanami.app["relations.clubs"]
+
+CLUBS.each do |name|
+  clubs.insert(name: name) unless clubs.where(name: name).exist?
+end
