@@ -9,6 +9,10 @@ module Fcmanager
       def club_name
         club_repo.grimsby_town[:name]
       end
+
+      def club_id
+        club_repo.grimsby_town[:id]
+      end
     end
   end
 end

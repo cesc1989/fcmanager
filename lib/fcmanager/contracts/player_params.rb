@@ -18,6 +18,8 @@ module Fcmanager
           required(:overall).filled(:integer, gteq?: 1, lteq?: 99)
           required(:height).filled(:integer, gteq?: 150, lteq?: 210)
           required(:foot).filled(:string)
+
+          optional(:club_id).maybe(:string)
           optional(:comment).maybe(:string)
 
           # Traits dinámicos: se conservan como hash y se sanitan en la acción.

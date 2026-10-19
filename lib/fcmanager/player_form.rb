@@ -28,7 +28,8 @@ module Fcmanager
         comment: params[:comment].to_s.empty? ? nil : params[:comment].to_s,
         height: params[:height].to_s,
         dominant_foot: PlayersCatalog.foot_db(params[:foot]),
-        primary_position: PlayersCatalog.position_db(params[:position])
+        primary_position: PlayersCatalog.position_db(params[:position]),
+        club_id: params[:club_id]
       }
     end
 
@@ -42,6 +43,7 @@ module Fcmanager
         height: player.height,
         foot: PlayersCatalog.foot_value(player.dominant_foot),
         comment: player.comment.to_s,
+        club_id: player.club_id,
         traits: player.player_traits.to_h { |pt| [pt.trait_id, pt.value] }
       }
     end

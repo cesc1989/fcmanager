@@ -11,6 +11,8 @@
 <% end %>
 
 <%= form_for("player", form_action, method: form_method) do |f| %>
+  <%= f.hidden_field :club_id, value: club_id %>
+
   <div class="form-fields">
     <label class="field">
       <span class="field-label">Nombre</span>
