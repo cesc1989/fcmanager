@@ -42,13 +42,12 @@ module Fcmanager
       private
 
       def sync_traits(player_id, traits)
-        traits.each do |trait_id, value|
-          player_traits.upsert(
-            {player_id: player_id, trait_id: trait_id, value: value},
-            target: [:player_id, :trait_id],
-            update: {value: value}
-          )
-        end
+        rows = traits.map { |trait_id, value| {player_id: player_id, trait_id: trait_id, value: value} }
+        return if rows.empty?
+
+        player_traits.dataset
+          .insert_conflict(target: [:player_id, :trait_id], update: {value: Sequel[:excluded][:value]})
+          .multi_insert(rows)
       end
     end
   end
