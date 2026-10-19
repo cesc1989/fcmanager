@@ -26,6 +26,16 @@ module Fcmanager
 
     POSITION_ORDER = POSITIONS.map { |position| position[:key] }.freeze
 
+    # Líneas del equipo, del portero al delantero (lista de la página Comparar).
+    GROUPS = [
+      {key: "POR", label: "Porteros"},
+      {key: "DEF", label: "Defensas"},
+      {key: "MED", label: "Mediocampistas"},
+      {key: "DEL", label: "Delanteros"}
+    ].freeze
+
+    POSITION_GROUP = POSITIONS.to_h { |position| [position[:key], position[:group]] }.freeze
+
     ROLES = [
       {key: "promesa", value: "Promesa", label: "Promesa", db: 0},
       {key: "esporádico", value: "Esporadico", label: "Esporadico", db: 1},
@@ -55,6 +65,11 @@ module Fcmanager
     # Posición (clave de la relación) → índice en el orden canónico del juego.
     def position_rank(key)
       POSITION_ORDER.index(key.to_s) || POSITION_ORDER.size
+    end
+
+    # Posición (clave de la relación) → línea: "POR", "DEF", "MED" o "DEL".
+    def group_of(key)
+      POSITION_GROUP.fetch(key.to_s, "MED")
     end
 
     def role_options
