@@ -111,4 +111,27 @@ RSpec.describe "Squad release", :db, type: :request do
     expect(last_response.body).to include(%(data-url="/squad/#{player_id}/release"))
     expect(last_response.body).to include(%(id="release-dialog"))
   end
+
+  it "al liberar a un jugador del once se borra su hueco" do
+    clubs = Hanami.app["relations.clubs"]
+    players = Hanami.app["relations.players"]
+    lineup_slots = Hanami.app["relations.lineup_slots"]
+    grimsby_id = clubs.insert(name: "Grimsby Town")
+    clubs.insert(name: "Agente Libre")
+    player_id = players.insert(
+      name: "Jugador Liberado",
+      age: "25",
+      overall: "70",
+      role: 0,
+      height: "180",
+      dominant_foot: 0,
+      primary_position: 12,
+      club_id: grimsby_id
+    )
+    lineup_slots.insert(club_id: grimsby_id, player_id: player_id, slot: 10)
+
+    patch("/squad/#{player_id}/release")
+
+    expect(lineup_slots.where(player_id: player_id).count).to eq(0)
+  end
 end

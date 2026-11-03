@@ -28,9 +28,19 @@ module Fcmanager
         players.by_pk(id).changeset(:update, attributes).commit
       end
 
-      # Saca al jugador de la plantilla pasándolo al club "Agente Libre".
+      # Ids de la plantilla, sin cargar traits.
+      def squad_ids
+        players.where(club_id: club_repo.grimsby_town[:id]).pluck(:id)
+      end
+
+      # Saca al jugador de la plantilla pasándolo al club "Agente Libre" y lo
+      # quita del once.
       def release(id)
-        update(id, club_id: club_repo.free_agent[:id])
+        transaction do
+          lineup_slots.where(player_id: id).delete
+
+          update(id, club_id: club_repo.free_agent[:id])
+        end
       end
 
       def create_with_traits(attributes, traits)

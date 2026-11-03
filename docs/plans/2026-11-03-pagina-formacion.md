@@ -740,6 +740,8 @@ Nota sobre el caso de `auto_fill`: en la primera pasada `mco` no es exacto para 
 
 ## Etapa 3 — Persistencia (depende de las Tareas 1.1 y 2.1)
 
+> Hecha el 2026-11-03. Corrección: en el primer caso del spec del repo, mover al portero a `st` intercambia con el delantero, así que el resultado esperado es `{"gk" => striker_id, "st" => keeper_id}`. Casos extra: el repo filtra por club y por plantilla, y `spec/repos/player_repo_spec.rb` cubre `squad_ids`.
+
 ### Tarea 3.1: `LineupRepo`, `squad_ids` y limpieza al liberar
 
 **Archivos:**
@@ -846,7 +848,7 @@ RSpec.describe Fcmanager::Repos::LineupRepo, :db do
     repo.change(club, squad_ids) { |lineup| lineup.assign("st", keeper_id) }
     reloaded = repo.for_club(club, squad_ids)
 
-    expect(reloaded.to_h).to eq("st" => keeper_id)
+    expect(reloaded.to_h).to eq("gk" => striker_id, "st" => keeper_id)
     expect(reloaded.formation.name).to eq("1-4-1-4-1")
   end
 
