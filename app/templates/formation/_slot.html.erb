@@ -1,0 +1,49 @@
+<%# Un hueco del campo. Con un jugador seleccionado (?sel=), todo el hueco es
+    un botón que lo coloca aquí; si no, la ficha enlaza a la ficha del jugador
+    y el × lo saca del campo. %>
+<% classes = ["slot", ("is-empty" unless player), ("is-target" if selected_id)].compact.join(" ") %>
+
+<div class="<%= classes %>"
+     style="left: <%= slot.x %>%; top: <%= slot.y %>%;"
+     data-slot="<%= slot.key %>"
+>
+  <% if selected_id %>
+    <form method="post"
+          action="<%= routes.path(:formation_assign) %>"
+    >
+      <input type="hidden" name="slot" value="<%= slot.key %>">
+
+      <input type="hidden" name="player_id" value="<%= selected_id %>">
+
+      <button class="slot-target"
+              type="submit"
+              title="Colocar aquí"
+      >
+        <%= render "formation/token", slot: slot, lineup: lineup, player: player %>
+      </button>
+    </form>
+  <% elsif player %>
+    <a href="<%= routes.path(:squad_player, id: player.id) %>"
+       class="token-link"
+       draggable="false"
+    >
+      <%= render "formation/token", slot: slot, lineup: lineup, player: player %>
+    </a>
+
+    <form class="token-remove-form"
+          method="post"
+          action="<%= routes.path(:formation_bench) %>"
+    >
+      <input type="hidden" name="player_id" value="<%= player.id %>">
+
+      <button class="token-remove"
+              type="submit"
+              title="Quitar del campo"
+      >
+        ×
+      </button>
+    </form>
+  <% else %>
+    <%= render "formation/token", slot: slot, lineup: lineup, player: nil %>
+  <% end %>
+</div>

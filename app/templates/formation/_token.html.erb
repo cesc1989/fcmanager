@@ -1,0 +1,32 @@
+<%# Ficha de un jugador en el campo, o el hueco vacío. Solo usa <span> porque
+    puede ir dentro de un <button>. %>
+<% if player %>
+  <% fit = lineup.formation.fit_of(player.primary_position, slot) %>
+  <% classes = ["token", rating_class(player.overall), fit_class(fit)].reject(&:empty?).join(" ") %>
+
+  <span class="<%= classes %>"
+        title="<%= fit_title(player, slot, fit) %>"
+        draggable="true"
+        data-player-id="<%= player.id %>"
+  >
+    <span class="token-disc">
+      <span class="token-ovr">
+        <%= player.overall %>
+      </span>
+
+      <span class="token-pos">
+        <%= position_info(player.primary_position)[:short] %>
+      </span>
+    </span>
+
+    <span class="token-name">
+      <%= player.name %>
+    </span>
+  </span>
+<% else %>
+  <span class="slot-empty">
+    <span class="slot-label">
+      <%= slot.label %>
+    </span>
+  </span>
+<% end %>

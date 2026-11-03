@@ -13,5 +13,11 @@ module Fcmanager
     get "/squad/:id", to: "squad.show", as: :squad_player
 
     get "/compare", to: "compare.show", as: :compare
+
+    get "/formation", to: "formation.show", as: :formation
+    post "/formation/assign", to: "formation.assign", as: :formation_assign
+    post "/formation/bench", to: "formation.bench", as: :formation_bench
+    post "/formation/auto", to: "formation.auto", as: :formation_auto
+    post "/formation/clear", to: "formation.clear", as: :formation_clear
   end
 end

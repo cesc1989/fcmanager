@@ -111,12 +111,40 @@ module Fcmanager
         routes.path(:compare, **pair.to_params)
       end
 
+      # Clic en la lista de Formación: selecciona al jugador o, si ya lo estaba,
+      # lo deselecciona.
+      def formation_select_path(player_id, selected_id)
+        return routes.path(:formation) if player_id == selected_id
+
+        routes.path(:formation, sel: player_id)
+      end
+
+      # Etiqueta del hueco que ocupa el jugador ("DFC") o nil.
+      def lineup_badge(lineup, player_id)
+        slot_key = lineup.slot_of(player_id)
+
+        slot_key && lineup.formation.slot(slot_key).label
+      end
+
+      # Clase del borde de la ficha según el encaje (ver Formation#fit_of).
+      def fit_class(fit)
+        {line: "fit-line", off: "fit-off"}.fetch(fit, "")
+      end
+
+      def fit_title(player, slot, fit)
+        return player.name if fit == :exact
+
+        "#{player.name} juega de #{position_info(player.primary_position)[:label]}, " \
+          "hueco de #{position_info(slot.position)[:label]}"
+      end
+
       # Clase de una pestaña del header según la ruta actual.
       def tab_class(section)
         path = request? ? request.path : ""
         active = case section
                  when :squad then path == "/" || path.start_with?("/squad")
                  when :compare then path.start_with?("/compare")
+                 when :formation then path.start_with?("/formation")
                  else false
                  end
 

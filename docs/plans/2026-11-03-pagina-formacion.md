@@ -921,6 +921,8 @@ end
 
 ## Etapa 4 — Página `/formation` en modo lectura (depende de las Etapas 1–3)
 
+> Hecha el 2026-11-03. Cambios: el título del encaje usa coma ("juega de X, hueco de Y") en vez del punto medio; las clases de `.slot` y `.token` se arman sin espacios sobrantes; la cabecera del campo pasa a dos líneas en móvil (`flex-wrap`).
+
 ### Tarea 4.1: Ruta GET, acción, vista, plantillas, CSS y pestaña
 
 Muestra la lista y el campo, la selección por `?sel=`, las fichas y los chips. Los botones y forms apuntan a rutas POST que se crean en la Tarea 5.1; aquí se declaran las cinco rutas para que `routes.path` funcione, pero las acciones POST llegan en la 5.1.

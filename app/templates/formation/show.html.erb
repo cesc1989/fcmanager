@@ -1,0 +1,142 @@
+<main>
+  <section class="formation-layout">
+    <aside class="bench">
+      <div class="bench-head">
+        <h2>
+          Jugadores
+        </h2>
+
+        <div class="row-actions">
+          <form method="post"
+                action="<%= routes.path(:formation_auto) %>"
+          >
+            <button class="btn ghost sm"
+                    type="submit"
+            >
+              Auto
+            </button>
+          </form>
+
+          <button class="btn ghost sm"
+                  type="button"
+                  data-open-dialog="clear-lineup-dialog"
+          >
+            Vaciar
+          </button>
+        </div>
+      </div>
+
+      <p class="hint">
+        Arrastra un jugador a una posición del campo, o haz clic para seleccionarlo y luego clic en el hueco.
+      </p>
+
+      <div class="bench-list"
+           data-formation-bench
+      >
+        <%= render "shared/bench_list",
+                   players: players,
+                   selected_id: selected_id,
+                   href: ->(player) { formation_select_path(player.id, selected_id) },
+                   badge: ->(player) { lineup_badge(lineup, player.id) } %>
+      </div>
+    </aside>
+
+    <div class="pitch-panel">
+      <div class="pitch-head">
+        <h2>
+          Formación
+
+          <strong>
+            <%= lineup.formation.name %>
+          </strong>
+        </h2>
+
+        <span class="spacer"></span>
+
+        <span class="chip">
+          <%= lineup.count %>/<%= lineup.formation.size %> alineados
+        </span>
+
+        <% average = lineup.average(players) %>
+
+        <% if average %>
+          <span class="chip">
+            Media <%= average %>
+          </span>
+        <% end %>
+      </div>
+
+      <div class="pitch-outer">
+        <div class="pitch">
+          <div class="pitch-markings">
+            <span class="line-mid"></span>
+
+            <span class="circle-mid"></span>
+
+            <span class="box box-top"></span>
+
+            <span class="box-small box-small-top"></span>
+
+            <span class="box box-bottom"></span>
+
+            <span class="box-small box-small-bottom"></span>
+          </div>
+
+          <% lineup.formation.slots.each do |slot| %>
+            <%= render "formation/slot",
+                       slot: slot,
+                       lineup: lineup,
+                       player: players_by_id[lineup.player_in(slot.key)],
+                       selected_id: selected_id %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <form id="formation-drop-form"
+        method="post"
+        action="<%= routes.path(:formation_assign) %>"
+        hidden
+  >
+    <input type="hidden" name="slot">
+
+    <input type="hidden" name="player_id">
+  </form>
+
+  <form id="formation-bench-form"
+        method="post"
+        action="<%= routes.path(:formation_bench) %>"
+        hidden
+  >
+    <input type="hidden" name="player_id">
+  </form>
+
+  <dialog id="clear-lineup-dialog"
+          class="dialog"
+  >
+    <form method="post"
+          action="<%= routes.path(:formation_clear) %>"
+    >
+      <p>
+        ¿Vaciar la alineación actual?
+      </p>
+
+      <div class="dialog-actions">
+        <button class="btn ghost"
+                type="submit"
+                formmethod="dialog"
+                formnovalidate
+        >
+          Cancelar
+        </button>
+
+        <button class="btn danger"
+                type="submit"
+        >
+          Vaciar
+        </button>
+      </div>
+    </form>
+  </dialog>
+</main>
