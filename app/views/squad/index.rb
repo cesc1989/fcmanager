@@ -4,7 +4,7 @@ module Fcmanager
   module Views
     module Squad
       class Index < Fcmanager::View
-        expose :players
+        expose :players, :lineup
       end
     end
   end

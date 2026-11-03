@@ -29,6 +29,12 @@
             <tr>
               <td class="col-name">
                 <a href="<%= routes.path(:squad_player, id: player.id) %>" class="link-name"><%= player.name %></a>
+
+                <% if lineup.slot_of(player.id) %>
+                  <span class="badge-xi">
+                    XI
+                  </span>
+                <% end %>
               </td>
 
               <td class="col-num"><%= player.age %></td>
