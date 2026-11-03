@@ -24,13 +24,18 @@ document.querySelectorAll(".js-autosubmit select").forEach((select) => {
   select.addEventListener("change", () => select.form.requestSubmit());
 });
 
-// Comparar: arrastrar un jugador de la lista a un cuadro reescribe ?a=&b=.
-// Si el jugador ya estaba en el otro cuadro, los dos se intercambian (como el
-// setCompare del prototipo). El servidor vuelve a validar los ids.
-document.querySelectorAll(".bench-item[data-player-id]").forEach((item) => {
+// Jugador que se está arrastrando: true si sale del campo (Formación).
+let dragFromPitch = false;
+
+// Comparar y Formación: se arrastran los jugadores de la lista y las fichas del
+// campo. En Comparar, soltar en un cuadro reescribe ?a=&b=; si el jugador ya
+// estaba en el otro cuadro, los dos se intercambian (como el setCompare del
+// prototipo). El servidor vuelve a validar los ids.
+document.querySelectorAll(".bench-item[data-player-id], .token[data-player-id]").forEach((item) => {
   item.addEventListener("dragstart", (event) => {
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("text/plain", item.dataset.playerId);
+    dragFromPitch = item.closest("[data-slot]") !== null;
     item.classList.add("is-dragging");
   });
 
@@ -68,5 +73,63 @@ document.querySelectorAll("[data-compare-box]").forEach((zone) => {
 
     params.set(box, id);
     window.location.search = params.toString();
+  });
+});
+
+// Formación: soltar en un hueco coloca al jugador (intercambia si venía de otro
+// hueco). Se envía el form oculto, como un clic normal.
+const dropForm = document.getElementById("formation-drop-form");
+
+document.querySelectorAll("[data-slot]").forEach((zone) => {
+  zone.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    zone.classList.add("is-over");
+  });
+
+  zone.addEventListener("dragleave", () => zone.classList.remove("is-over"));
+
+  zone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    zone.classList.remove("is-over");
+
+    const id = event.dataTransfer.getData("text/plain");
+    if (!id || !dropForm) return;
+
+    dropForm.elements.slot.value = zone.dataset.slot;
+    dropForm.elements.player_id.value = id;
+    dropForm.submit();
+  });
+});
+
+// Formación: soltar una ficha del campo en la lista la saca del once. Lo que
+// viene de la lista no hace nada (evita recargar la página por nada).
+const benchForm = document.getElementById("formation-bench-form");
+
+document.querySelectorAll("[data-formation-bench]").forEach((zone) => {
+  zone.addEventListener("dragover", (event) => {
+    if (!dragFromPitch) return;
+
+    event.preventDefault();
+    zone.classList.add("is-over");
+  });
+
+  zone.addEventListener("dragleave", () => zone.classList.remove("is-over"));
+
+  zone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    zone.classList.remove("is-over");
+
+    const id = event.dataTransfer.getData("text/plain");
+    if (!id || !dragFromPitch || !benchForm) return;
+
+    benchForm.elements.player_id.value = id;
+    benchForm.submit();
+  });
+});
+
+// Botones que abren un <dialog> por id (Vaciar en Formación).
+document.querySelectorAll("[data-open-dialog]").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.getElementById(button.dataset.openDialog)?.showModal();
   });
 });

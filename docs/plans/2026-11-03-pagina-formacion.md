@@ -1747,6 +1747,8 @@ Vista: `expose :players, :lineup`.
 
 ## Etapa 6 — Arrastrar y soltar (depende de la Etapa 5)
 
+> Hecha el 2026-11-03. Verificado con Playwright sobre una copia de la BD: lista → hueco vacío, lista → hueco ocupado, intercambio en el campo, soltar en el propio hueco (recarga sin cambios), campo → lista, lista → lista (no recarga), y Vaciar con Cancelar/confirmar. Soltar sin mover el ratón sobre una ficha es un clic y abre la ficha del jugador.
+
 ### Tarea 6.1: Drag & drop con forms ocultos + abrir diálogos
 
 **Archivos:**
