@@ -1,56 +1,6 @@
 /* Página Comparar. Copiado del prototipo (css/styles.css), sin lo que ya está
    en card.css, plantilla.css y controls.css. */
 
-/* En el prototipo era .formation-layout, compartido con Formación. */
-.compare-layout {
-  display: grid;
-  grid-template-columns: 340px minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-}
-
-.bench {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 14px;
-  position: sticky;
-  top: 78px;
-}
-.bench-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-.bench-head h2 { font-size: 14px; }
-
-.bench-list {
-  max-height: calc(100vh - 220px);
-  overflow: auto;
-  border-radius: 10px;
-  padding: 2px;
-  transition: background .15s ease;
-}
-.bench-list.is-over { background: rgba(255, 107, 107, .1); outline: 1px dashed rgba(255, 107, 107, .5); }
-
-.bench-group {
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 11px; text-transform: uppercase; letter-spacing: .8px;
-  color: var(--muted); font-weight: 700;
-  padding: 12px 6px 6px;
-}
-
-.bench-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 7px 9px; border-radius: 10px;
-  border: 1px solid transparent;
-  cursor: grab;
-  user-select: none;
-}
-.bench-item:hover { background: var(--panel-2); }
-.bench-item.is-selected { border-color: var(--accent); background: rgba(46, 230, 168, .1); }
-.bench-item.is-on-pitch { opacity: .55; }
-.bench-item.is-dragging { opacity: .35; }
-.bench-info { display: flex; flex-direction: column; min-width: 0; flex: 1; }
-.bench-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.bench-sub { font-size: 11px; color: var(--muted); }
-
 .compare-panel {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -161,11 +111,5 @@
   .cmp-notes { grid-template-columns: 1fr; }
 }
 
-/* Los ítems de la lista y el botón ⇄ ahora son enlaces. */
-.bench-item { color: inherit; text-decoration: none; }
+/* El botón ⇄ es un enlace. */
 .swap-btn { text-align: center; text-decoration: none; }
-
-@media (max-width: 900px) {
-  .compare-layout { grid-template-columns: 1fr; }
-  .bench { position: static; }
-}
