@@ -455,6 +455,8 @@ En `app.js`, `import "../css/bench.css";` justo antes de `import "../css/compare
 
 ## Etapa 2 — Dominio del once (depende de la Tarea 1.2)
 
+> Hecha el 2026-11-03. Se añadió un caso extra: `auto_fill` ignora a jugadores fuera de `squad_ids`.
+
 ### Tarea 2.1: `Lineup`
 
 Port de la parte de alineación de `js/store.js`.
