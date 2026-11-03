@@ -4,7 +4,7 @@ module Fcmanager
   module Views
     module Squad
       class Show < Fcmanager::View
-        expose :player
+        expose :player, :lineup
       end
     end
   end

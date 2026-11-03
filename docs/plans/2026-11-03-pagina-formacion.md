@@ -1448,6 +1448,8 @@ El parcial de la lista (Tarea 1.3) ya arma la clase con `compact.join(" ")`, as�
 
 ## Etapa 5 — Cambios al once (depende de la Etapa 4; tareas independientes entre sí)
 
+> 5.1 hecha el 2026-11-03. Cambio de texto: la ficha dice "En el once: DC" (dos puntos en vez del punto medio). El botón "Vaciar" solo abre su diálogo desde la Tarea 6.1, que añade el JS de `data-open-dialog`.
+
 ### Tarea 5.1: Acciones POST `assign`, `bench`, `auto`, `clear` y "Quitar del campo" en la ficha
 
 **Archivos:**

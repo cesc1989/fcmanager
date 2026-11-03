@@ -1,5 +1,7 @@
 <main>
   <section class="player-page">
+    <% slot_key = lineup.slot_of(player.id) %>
+
     <div class="form-head">
       <h1><%= player.name %></h1>
       <div class="row-actions">
@@ -10,6 +12,22 @@
         >
           Comparar
         </a>
+
+        <% if slot_key %>
+          <form method="post"
+                action="<%= routes.path(:formation_bench) %>"
+          >
+            <input type="hidden" name="player_id" value="<%= player.id %>">
+
+            <input type="hidden" name="return_to" value="<%= routes.path(:squad_player, id: player.id) %>">
+
+            <button class="btn ghost sm danger"
+                    type="submit"
+            >
+              Quitar del campo
+            </button>
+          </form>
+        <% end %>
 
         <a href="<%= routes.path(:edit_squad, id: player.id) %>" class="btn primary sm">Editar</a>
       </div>
@@ -32,6 +50,16 @@
           </div>
           <div class="card-line"><%= player.age %> años · <%= role_label(player.role) %></div>
           <div class="card-line muted"><%= player.height %> · Pie <%= foot_label(player.dominant_foot).downcase %></div>
+
+          <% if slot_key %>
+            <div class="card-line ok">
+              En el once: <%= lineup.formation.slot(slot_key).label %>
+            </div>
+          <% else %>
+            <div class="card-line muted">
+              Fuera del once
+            </div>
+          <% end %>
         </div>
       </div>
 
