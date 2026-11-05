@@ -17,12 +17,21 @@
 .btn.sm { padding: 6px 10px; font-size: 12px; }
 
 .icon-btn {
-  border: 0; background: transparent; color: var(--muted);
-  cursor: pointer; font-size: 15px; line-height: 1;
-  padding: 6px 7px; border-radius: 8px;
+  border: 1px solid #ccc;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
   text-decoration: none;
 }
-.icon-btn:hover { background: var(--panel-2); color: var(--text); }
+.icon-btn:hover {
+  background-color: #0f3f82;
+  color: var(--text);
+}
+
 .icon-btn.danger:hover { color: var(--danger); }
 
 .input {

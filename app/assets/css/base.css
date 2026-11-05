@@ -36,3 +36,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 650; }
 .error { color: var(--danger); font-size: 13px; margin: 10px 0 0; }
 
 main { padding: 18px 20px 40px; }
+
+.mr-4 {
+  margin-right: 4px;
+}
