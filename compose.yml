@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    image: fcmanager
+    container_name: fcmanager
+    restart: unless-stopped
+    ports:
+      - "2300:2300"
+    volumes:
+      # La base vive en el host (db/ del repo, ignorada por git).
+      - ./db:/app/db
