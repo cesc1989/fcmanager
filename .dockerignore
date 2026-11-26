@@ -1,0 +1,9 @@
+.git
+node_modules
+public/assets
+public/assets.json
+db/*.sqlite
+log/*
+tmp/*
+.ruby-lsp
+.env*.local

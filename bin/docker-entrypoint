@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+# Crea la base si no existe, migra y carga seeds (idempotentes).
+bundle exec hanami db prepare
+
+exec "$@"

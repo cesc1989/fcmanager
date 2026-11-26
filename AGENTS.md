@@ -11,6 +11,7 @@ App is in an early DB-modeling stage: routes, actions, and views are still empty
 - Single test: `bundle exec rspec spec/requests/root_spec.rb:5`
 - Migrations + seeds: `hanami db prepare` (or `hanami db migrate` / `hanami db seed`)
 - Asset build (prod): `hanami assets compile`
+- Docker (prod, PC casero): `docker compose up -d --build` → puerto 2300, base en `./db` montada. Para probar en el Mac usar otro puerto: `docker build -t fcmanager . && docker run --rm -p 2399:2300 -v "$PWD/tmp/docker-db:/app/db" fcmanager`
 
 - Lint: `bundle exec rubocop` (config in `.rubocop.yml`; existing offenses not yet fixed)
 - Solargraph (LSP for the editor) is configured in `.solargraph.yml`; after changing gems run `bundle exec solargraph gems`.

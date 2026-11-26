@@ -13,3 +13,18 @@ Todo sin tener que navegar la UI incomoda de FC y sin prender la consola.
 - View the app at [http://localhost:2300](http://localhost:2300)
 - Run the tests with `bundle exec rake`
 
+
+## Correr en casa con Docker
+
+En el PC que sirve la app (Linux, con Docker Engine y el plugin compose):
+
+- Primera vez o después de actualizar: `git pull && docker compose up -d --build`
+- Abrir desde cualquier dispositivo de la casa: `http://<ip-del-pc>:2300`
+- Logs: `docker compose logs -f`
+- Detener: `docker compose down`
+
+La base es `db/fcmanager.sqlite` del host (montada como volumen). Las migraciones
+y seeds corren solos al arrancar el contenedor. Para un backup basta copiar ese archivo.
+
+No correr `bin/dev` en ese PC mientras el contenedor esté arriba: usan el mismo
+puerto y la misma base.
