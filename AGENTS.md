@@ -30,3 +30,4 @@ App is in an early DB-modeling stage: routes, actions, and views are still empty
 ## Reference
 
 - README.md for the project pitch and basic workflow.
+- docs/architecture/docker.md for how the Docker container runs on the home PC (coshinema) and how to operate it.
